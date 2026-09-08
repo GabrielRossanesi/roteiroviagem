@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Roteiro de Viagem | Guarujá-SP para Jaguaribe-CE</title>
+  <meta name="description" content="Guia e Roteiro de Mudança: Guarujá (SP) para Jaguaribe (CE) no Fox 1.6 com checklist offline, SOS e autonomia de combustível." />
+  <meta name="theme-color" content="#059669" />
+
+  <!-- PWA Manifest & Icons -->
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+    @media print {
+      .no-print { display: none !important; }
+      body { background: white !important; color: black !important; }
+      .shadow-sm, .shadow-md, .shadow-xl { box-shadow: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased min-h-screen pb-24 selection:bg-emerald-500 selection:text-white transition-colors duration-200">
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="bg-white dark:bg-gradient-to-b dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 border-b border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors">
+    <div class="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-10 dark:opacity-20 pointer-events-none"></div>
+    
+    <div class="max-w-5xl mx-auto px-4 pt-6 pb-6 relative z-10">
+      
+      <!-- Linha superior de utilitários -->
+      <div class="flex items-center justify-between gap-2 mb-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-xs font-bold tracking-wide uppercase border border-emerald-500/30">
+          <i data-lucide="compass" class="w-3.5 h-3.5"></i> Guia Oficial de Mudança
+        </div>
+
+        <div class="flex items-center gap-2 no-print">
+          <!-- Botão PWA Instalar (dinâmico) -->
+          <button id="pwaInstallBtn" class="hidden items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-md shadow-emerald-900/30 transition">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Instalar App
+          </button>
+
+          <!-- Alternar Tema Claro / Escuro -->
+          <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar tema claro/escuro" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-300 border border-slate-300 dark:border-slate-700 transition">
+            <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Botão SOS Rápido -->
+          <button onclick="openSosModal()" class="flex items-center gap-1.5 bg-red-600 hover:bg-red-500 text-white px-3 py-1.5 rounded-xl text-xs font-extrabold shadow-md shadow-red-950/40 transition">
+            <i data-lucide="phone-call" class="w-3.5 h-3.5 animate-pulse"></i> SOS
+          </button>
+
+          <!-- Imprimir / PDF -->
+          <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-3 py-1.5 rounded-xl text-xs font-semibold transition border border-slate-300 dark:border-slate-700">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i> PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- Título Principal -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 dark:text-white flex flex-wrap items-center gap-2">
+            <span>Guarujá (SP)</span>
+            <i data-lucide="arrow-right" class="w-6 h-6 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
+            <span class="text-emerald-600 dark:text-emerald-400">Jaguaribe (CE)</span>
+          </h1>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1.5 max-w-2xl">
+            Roteiro completo de 2 dias e meio (saída às 22h). Fox 1.6 2017 com checklist 100% offline, autonomia, botões GPS e SOS de emergência.
+          </p>
+        </div>
+
+        <div id="statusBadgeContainer" class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-700/60 p-2.5 rounded-2xl">
+          <i data-lucide="wifi" id="offlineStatusIcon" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+          <div>
+            <div id="offlineStatusText" class="text-[11px] font-bold text-emerald-800 dark:text-emerald-300">Pronto para Offline</div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-400">Salvo no navegador</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumo dos Dados Principais em Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mt-6">
+        <div class="bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-3.5 shadow-sm">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i> Distância
+          </span>
+          <p class="text-lg sm:text-xl font-extrabold mt-1 text-slate-900 dark:text-white">~3.080 km</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-3.5 shadow-sm">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i> Duração
+          </span>
+          <p class="text-lg sm:text-xl font-extrabold mt-1 text-slate-900 dark:text-white">2 dias e meio</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-3.5 shadow-sm">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="car" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i> Veículo
+          </span>
+          <p class="text-lg sm:text-xl font-extrabold mt-1 text-slate-900 dark:text-white">Fox 1.6 (2017)</p>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-3.5 shadow-sm">
+          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <i data-lucide="bed-double" class="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400"></i> Pernoites
+          </span>
+          <p class="text-lg sm:text-xl font-extrabold mt-1 text-emerald-700 dark:text-emerald-300">Formosa & Bom Jesus</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navegação Superior por Abas (Desktop e Tablet) -->
+    <nav class="border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/70 backdrop-blur px-4 no-print overflow-x-auto custom-scrollbar">
+      <div class="max-w-5xl mx-auto flex gap-2 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+        <a href="#checklist" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="check-square" class="w-3.5 h-3.5"></i> Marcos da Viagem
+        </a>
+        <a href="#previagem" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="clipboard-check" class="w-3.5 h-3.5"></i> Pré-Viagem (Fox)
+        </a>
+        <a href="#roteiro" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Roteiro & GPS
+        </a>
+        <a href="#combustivel" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="fuel" class="w-3.5 h-3.5"></i> Combustível & Paradas
+        </a>
+        <a href="#hoteis" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="bed" class="w-3.5 h-3.5"></i> Hotéis no Maps
+        </a>
+        <a href="#seguranca" class="flex items-center gap-1.5 py-1.5 px-3 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Dicas de Segurança
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= CONTEÚDO PRINCIPAL ================= -->
+  <main class="max-w-5xl mx-auto px-4 py-8 space-y-12">
+
+    <!-- ================= SEÇÃO 1: CHECKLIST DE MARCOS DA ESTRADA ================= -->
+    <section id="checklist" class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-5 sm:p-7 shadow-xl">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs uppercase font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400">
+            <i data-lucide="list-checks" class="w-4 h-4"></i> Progresso em Tempo Real
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">Marcos e Cidades da Viagem</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">
+            Toque nos pontos conforme passarem. O horário real fica registrado e salvo automaticamente no celular!
+          </p>
+        </div>
+
+        <!-- Ações do Checklist: WhatsApp e Reset -->
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button onclick="shareWhatsAppProgress()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold py-2 px-3.5 rounded-xl shadow-md shadow-emerald-900/30 transition">
+            <i data-lucide="share-2" class="w-3.5 h-3.5"></i> Compartilhar no WhatsApp
+          </button>
+          
+          <button onclick="confirmResetChecklist()" class="text-xs text-slate-500 dark:text-slate-400 hover:text-red-500 flex items-center gap-1.5 py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 transition">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reiniciar
+          </button>
+        </div>
+      </div>
+
+      <!-- Barra de Progresso e Estatísticas -->
+      <div class="mt-5 bg-slate-50 dark:bg-slate-900/80 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/60">
+        <div class="flex justify-between items-center text-xs font-bold mb-2">
+          <span class="text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+            <i data-lucide="flag" class="w-4 h-4 text-emerald-500"></i>
+            <span id="checkpointCount">0 de 21</span> marcos alcançados
+          </span>
+          <span id="checkpointPercent" class="text-emerald-600 dark:text-emerald-400 font-extrabold text-sm">0%</span>
+        </div>
+        <div class="w-full bg-slate-200 dark:bg-slate-800 h-3.5 rounded-full overflow-hidden p-0.5 border border-slate-300 dark:border-slate-700">
+          <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-300 ease-out" style="width: 0%"></div>
+        </div>
+
+        <!-- Último Marco Registrado -->
+        <div id="lastCheckedBox" class="mt-3 hidden items-center justify-between text-xs bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-800 dark:text-emerald-300 p-2.5 rounded-xl border border-emerald-500/30">
+          <span class="flex items-center gap-2">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>
+            <span>Último ponto: <strong id="lastCheckedTitle">-</strong></span>
+          </span>
+          <span id="lastCheckedTime" class="text-[11px] font-semibold text-emerald-700 dark:text-emerald-400"></span>
+        </div>
+      </div>
+
+      <!-- Filtros Rápidos (Todos, Dias, Pendentes) -->
+      <div class="mt-5 flex items-center gap-2 overflow-x-auto pb-1 custom-scrollbar text-xs font-bold">
+        <button onclick="setCheckpointFilter('all')" id="btnFilter_all" class="filter-btn py-1.5 px-3 rounded-lg bg-emerald-600 text-white shadow">Todos (21)</button>
+        <button onclick="setCheckpointFilter('dia1')" id="btnFilter_dia1" class="filter-btn py-1.5 px-3 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">Dia 1 (SP-GO)</button>
+        <button onclick="setCheckpointFilter('dia2')" id="btnFilter_dia2" class="filter-btn py-1.5 px-3 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">Dia 2 (GO-PI)</button>
+        <button onclick="setCheckpointFilter('dia3')" id="btnFilter_dia3" class="filter-btn py-1.5 px-3 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">Dia 3 (PI-CE)</button>
+        <button onclick="setCheckpointFilter('pending')" id="btnFilter_pending" class="filter-btn py-1.5 px-3 rounded-lg bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">Pendentes</button>
+      </div>
+
+      <!-- Grid de Checkpoints -->
+      <div id="checkpointsList" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
+        <!-- Renderizado dinamicamente via JavaScript -->
+      </div>
+    </section>
+
+
+    <!-- ================= SEÇÃO 2: CHECKLIST PRÉ-VIAGEM (FOX 1.6 & MUDANÇA) ================= -->
+    <section id="previagem" class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-5 sm:p-7 shadow-xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs uppercase font-extrabold tracking-wider text-blue-600 dark:text-blue-400">
+            <i data-lucide="clipboard-check" class="w-4 h-4"></i> Inspeção de Partida
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">Checklist Pré-Viagem (Fox 1.6 & Mudança)</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">
+            Itens indispensáveis para conferir na garagem antes de dar a partida no Guarujá.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span id="preViagemCount" class="text-xs font-bold bg-blue-500/10 text-blue-600 dark:text-blue-300 border border-blue-500/20 px-3 py-1.5 rounded-xl">0 de 15 conferidos</span>
+          <button onclick="resetPreViagem()" class="text-xs text-slate-500 dark:text-slate-400 hover:text-red-500 py-1.5 px-2.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">Limpar</button>
+        </div>
+      </div>
+
+      <!-- Grid de Categorias de Pré-Viagem -->
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5" id="preViagemContainer">
+        <!-- Renderizado via JS -->
+      </div>
+    </section>
+
+
+    <!-- ================= SEÇÃO 3: ROTEIRO DETALHADO COM GPS & MAPAS ================= -->
+    <section id="roteiro" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs uppercase font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+            <i data-lucide="milestone" class="w-4 h-4"></i> Etapas Diárias
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">Cronograma, Horários e Trajeto GPS</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Com botões diretos para carregar a rota pré-configurada no Google Maps e Waze.</p>
+        </div>
+      </div>
+
+      <!-- DIA 1 -->
+      <article class="bg-white dark:bg-slate-800/90 rounded-3xl p-5 sm:p-7 border border-slate-200 dark:border-slate-700/80 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-700">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-extrabold bg-blue-500/15 text-blue-700 dark:text-blue-300 border border-blue-500/30">DIA 1</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase">SAÍDA NOTURNA ➔ PERNOITE 1</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">Guarujá (SP) ➔ Formosa (GO)</h3>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="milestone" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> 1.165 km
+            </span>
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="clock" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> ~15h
+            </span>
+
+            <!-- Botões GPS Dia 1 -->
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Guarujá,+SP&destination=Formosa,+GO&waypoints=Ribeirão+Preto,+SP|Uberaba,+MG|Cristalina,+GO" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 1
+            </a>
+            <a href="https://waze.com/ul?q=Formosa,+GO&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-5 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-300 dark:before:bg-slate-700">
+          
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-400 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400">22:00</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Partida do Guarujá (SP)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Subida da Imigrantes e conexão com Rodoanel Mário Covas até Bandeirantes/Anhanguera. Estrada livre e fluida na madrugada.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-blue-600 dark:text-blue-400">02:30 – 03:00 (~380 km)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Passagem por Ribeirão Preto (SP)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Pista duplicada de alto padrão. Parada de conveniência recomendada (Graal ou similar) para café, esticar as pernas e banheiro.</p>
+            </div>
+          </div>
+
+          <!-- DESTAQUE AO AMANHECER -->
+          <div class="relative flex items-start gap-4 pl-8 bg-amber-500/10 p-3.5 rounded-2xl border border-amber-500/30">
+            <div class="absolute left-3.5 top-5 -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 ring-4 ring-white dark:ring-slate-900 shadow"></div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-black text-amber-700 dark:text-amber-300 uppercase tracking-wider flex items-center gap-1">
+                  <i data-lucide="sunrise" class="w-3.5 h-3.5"></i> Ao Amanhecer (05:30 às 06:30)
+                </span>
+                <span class="text-[11px] bg-amber-500/20 text-amber-800 dark:text-amber-200 font-bold px-2 py-0.5 rounded">~590 km rodados</span>
+              </div>
+              <h4 class="font-bold text-amber-900 dark:text-amber-200 text-sm sm:text-base mt-1">Região de Uberaba (MG) / BR-050</h4>
+              <p class="text-xs text-amber-800 dark:text-amber-100/90 mt-0.5 leading-relaxed">
+                <strong>Ponto Estratégico:</strong> Entrada no Triângulo Mineiro. Parada recomendada para tomar aquele café da manhã completo (Posto Décio ou similar na BR-050), abastecer o Fox e trocar a direção com a claridade do dia.
+              </p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-400 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400">11:30 – 12:30 (~980 km)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Almoço em Cristalina (GO)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Transição entre a BR-050 e a BR-040 contornando o Distrito Federal sentido Formosa.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">14:30 – 15:30 (Chegada Dia 1)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Pernoite 1 em Formosa (GO)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Check-in antecipado no hotel, banho relaxante e almoço tardio/descanso merecido após cruzar a noite na estrada.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- DIA 2 -->
+      <article class="bg-white dark:bg-slate-800/90 rounded-3xl p-5 sm:p-7 border border-slate-200 dark:border-slate-700/80 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-700">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-extrabold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">DIA 2</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase">OESTE BAIANO ➔ PIAUÍ</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">Formosa (GO) ➔ Bom Jesus (PI)</h3>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="milestone" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> ~1.000 km
+            </span>
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="clock" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> ~13h
+            </span>
+
+            <!-- Botões GPS Dia 2 -->
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Formosa,+GO&destination=Bom+Jesus,+PI&waypoints=Luís+Eduardo+Magalhães,+BA|Barreiras,+BA|Corrente,+PI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 2
+            </a>
+            <a href="https://waze.com/ul?q=Bom+Jesus,+PI&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-5 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-300 dark:before:bg-slate-700">
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-400 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400">06:00</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Saída de Formosa pela BR-020</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Cruza Alvorada do Norte e Posse com o dia claro, rumo à divisa com a Bahia.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-blue-600 dark:text-blue-400">12:00 – 13:00 (~510 km)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Almoço em LEM ou Barreiras (BA)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Polo do agronegócio com excelentes postos de bandeira Shell e BR. Parada mandatória para encher o tanque e conferir calibragem dos pneus.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-amber-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-amber-600 dark:text-amber-400">16:30 – 17:00 (~860 km)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Passagem por Corrente (PI)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Ponto de decisão: se sentirem fadiga, podem pernoitar em Corrente. Se estiverem bem, sigam mais ~1h30 até Bom Jesus.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">18:30 – 19:30 (Chegada Dia 2)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Pernoite 2 em Bom Jesus (PI)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Chegada com segurança antes do breu total na BR-135. Descanso para a reta final.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- DIA 3 -->
+      <article class="bg-white dark:bg-slate-800/90 rounded-3xl p-5 sm:p-7 border border-slate-200 dark:border-slate-700/80 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-700">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-extrabold bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30">DIA 3</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase">DO PIAUÍ AO DESTINO FINAL</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">Bom Jesus (PI) ➔ Jaguaribe (CE)</h3>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="milestone" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> ~915 km
+            </span>
+            <span class="bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 px-3 py-1.5 rounded-xl font-bold text-slate-800 dark:text-slate-200">
+              <i data-lucide="clock" class="w-3.5 h-3.5 inline text-emerald-500 mr-1"></i> ~12h
+            </span>
+
+            <!-- Botões GPS Dia 3 -->
+            <a href="https://www.google.com/maps/dir/?api=1&origin=Bom+Jesus,+PI&destination=Jaguaribe,+CE&waypoints=Floriano,+PI|Picos,+PI|Icó,+CE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 3
+            </a>
+            <a href="https://waze.com/ul?q=Jaguaribe,+CE&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-6 space-y-5 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-300 dark:before:bg-slate-700">
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-slate-400 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400">06:00</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Saída de Bom Jesus (BR-135)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Seguindo sentido Floriano e cruzando o Rio Parnaíba nas primeiras horas do dia.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8">
+            <div class="absolute left-3.5 top-1 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-white dark:ring-slate-900"></div>
+            <div>
+              <span class="text-xs font-bold text-blue-600 dark:text-blue-400">11:30 – 12:30 (~490 km)</span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Almoço em Picos (PI)</h4>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Principal entroncamento do Nordeste. Almoço e abastecimento completo antes da subida da Chapada rumo ao Ceará.</p>
+            </div>
+          </div>
+
+          <div class="relative flex items-start gap-4 pl-8 bg-emerald-500/10 p-3.5 rounded-2xl border border-emerald-500/30">
+            <div class="absolute left-3.5 top-5 -translate-x-1/2 w-4 h-4 rounded-full bg-emerald-500 ring-4 ring-white dark:ring-slate-900 shadow"></div>
+            <div>
+              <span class="text-xs font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+                <i data-lucide="party-popper" class="w-3.5 h-3.5"></i> Chegada em Casa!
+              </span>
+              <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base mt-1">Jaguaribe (CE)</h4>
+              <p class="text-xs text-emerald-800 dark:text-emerald-200 mt-0.5">Previsão entre <strong>18:00 e 19:30</strong>. Missão cumprida com a mudança segura!</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+
+    <!-- ================= SEÇÃO 4: COMBUSTÍVEL, AUTONOMIA FOX & PARADAS ================= -->
+    <section id="combustivel" class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-5 sm:p-7 shadow-xl">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-5 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2.5">
+            <span class="p-2 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30">
+              <i data-lucide="fuel" class="w-5 h-5"></i>
+            </span>
+            Calculadora & Autonomia do Fox 1.6
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-1">
+            Planejamento para o tanque de 50L do Fox com peso de mudança e uso de ar-condicionado.
+          </p>
+        </div>
+
+        <!-- Indicador de total -->
+        <div class="bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-500/30 rounded-2xl px-5 py-3.5 flex items-center justify-between sm:justify-start gap-5">
+          <div>
+            <div class="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider">Custo Estimado Gasolina</div>
+            <div id="costDisplay" class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">R$ 1.448,67</div>
+          </div>
+          <div class="text-right pl-4 border-l border-emerald-300 dark:border-emerald-700/50">
+            <div class="text-[11px] text-slate-600 dark:text-slate-300 font-medium">Consumo Total</div>
+            <div id="litersDisplay" class="text-sm sm:text-base font-bold text-emerald-700 dark:text-emerald-300">228,1 L</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controles da Calculadora -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-5">
+        <div>
+          <label for="distanceInput" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+            Distância Total (km)
+          </label>
+          <div class="relative">
+            <input type="number" id="distanceInput" value="3080" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">km</span>
+          </div>
+        </div>
+
+        <div>
+          <label for="consumptionInput" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+            Média de Consumo (km/l)
+          </label>
+          <div class="relative">
+            <input type="number" step="0.5" id="consumptionInput" value="13.5" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">km/l</span>
+          </div>
+          <span class="text-[11px] text-amber-600 dark:text-amber-400 mt-1 block">💡 Recomendado 13,5 km/l (Fox com carga + ar)</span>
+        </div>
+
+        <div>
+          <label for="fuelPriceInput" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+            Preço Médio da Gasolina (R$)
+          </label>
+          <div class="relative">
+            <input type="number" step="0.05" id="fuelPriceInput" value="6.35" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="absolute right-3 top-2.5 text-xs text-slate-400 font-medium">R$/L</span>
+          </div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">Média interestadual SP/MG/GO/BA/PI/CE</span>
+        </div>
+      </div>
+
+      <!-- Autonomia e Tanques Recomendados -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+        <div class="bg-slate-50 dark:bg-slate-900 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+          <div class="text-slate-500 dark:text-slate-400 font-semibold">Tanque Fox 1.6</div>
+          <div class="text-base font-extrabold text-slate-900 dark:text-white mt-0.5">50 Litros</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Capacidade nominal</div>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+          <div class="text-slate-500 dark:text-slate-400 font-semibold">Autonomia Segura</div>
+          <div id="safeRangeDisplay" class="text-base font-extrabold text-emerald-600 dark:text-emerald-400 mt-0.5">~500 km</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Abastecendo ao restar 1/4 do tanque</div>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700 text-xs">
+          <div class="text-slate-500 dark:text-slate-400 font-semibold">Paradas de Abastecimento</div>
+          <div id="stopsCountDisplay" class="text-base font-extrabold text-blue-600 dark:text-blue-400 mt-0.5">~5 a 6 paradas</div>
+          <div class="text-[11px] text-slate-500 mt-0.5">Ao longo de toda a rota</div>
+        </div>
+      </div>
+
+      <!-- Paradas Estratégicas Recomendadas de Combustível -->
+      <div class="mt-6">
+        <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-1.5 mb-3">
+          <i data-lucide="map-pin" class="w-4 h-4 text-emerald-500"></i> Paradas Sugeridas de Abastecimento (Postos Confiáveis)
+        </h3>
+
+        <div class="space-y-2 text-xs">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">1. Ribeirão Preto / Cravinhos (SP)</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~380 km rodados • Postos Graal ou Rede Frango Assado (Bandeirantes/Anhanguera)</span>
+            </div>
+            <span class="text-[11px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded shrink-0">Combustível SP</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">2. Uberlândia / Catalão (BR-050)</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~700-800 km • Postos Rede Décio (alta qualidade e estrutura completa)</span>
+            </div>
+            <span class="text-[11px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded shrink-0">Triângulo Mineiro</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">3. Formosa (GO) - Pernoite 1</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~1.165 km • Abastecer com calma antes de entrar no sertão baiano na manhã seguinte</span>
+            </div>
+            <span class="text-[11px] bg-blue-500/10 text-blue-700 dark:text-blue-400 font-bold px-2 py-0.5 rounded shrink-0">Fim do Dia 1</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">4. Barreiras (BA) - Dia 2</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~1.675 km • Postos da entrada da cidade (Shell / Petrobras). Essencial antes da BR-135</span>
+            </div>
+            <span class="text-[11px] bg-amber-500/10 text-amber-700 dark:text-amber-400 font-bold px-2 py-0.5 rounded shrink-0">Oeste Baiano</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">5. Bom Jesus (PI) - Pernoite 2</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~2.165 km • Postos centrais ou na BR-135 ao chegar</span>
+            </div>
+            <span class="text-[11px] bg-blue-500/10 text-blue-700 dark:text-blue-400 font-bold px-2 py-0.5 rounded shrink-0">Fim do Dia 2</span>
+          </div>
+
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-slate-900 dark:text-white">6. Picos (PI) - Dia 3</strong>
+              <span class="text-slate-500 dark:text-slate-400 block sm:inline sm:ml-2">~2.655 km • Abastecimento no polo comercial antes da divisa com o Ceará</span>
+            </div>
+            <span class="text-[11px] bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded shrink-0">Reta Final</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estimativa de Pedágios -->
+      <div class="mt-5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-700 dark:text-slate-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5">
+          <i data-lucide="receipt" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+          <span><strong>Pedágios Estimados:</strong> R$ 220 a R$ 250 (concentrados em SP e na BR-050 em MG/GO).</span>
+        </div>
+        <span class="text-xs bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full font-bold border border-emerald-500/30">Sem pedágio no PI e CE</span>
+      </div>
+    </section>
+
+
+    <!-- ================= SEÇÃO 5: HOTÉIS NO GOOGLE MAPS ================= -->
+    <section id="hoteis" class="space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase font-extrabold tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+          <i data-lucide="map-pin" class="w-4 h-4"></i> Pernoites e Hospedagem
+        </div>
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Hotéis com Links Diretos no Maps</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Toque no botão para abrir a localização exata, fotos, rotas e telefones diretamente no Google Maps.</p>
+      </div>
+
+      <!-- Hotéis Formosa (GO) -->
+      <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Primeiro Pernoite: Formosa (GO)</h3>
+          </div>
+          <span class="text-xs bg-blue-500/15 text-blue-700 dark:text-blue-300 px-2.5 py-1 rounded-full border border-blue-500/30 font-bold">Fim do Dia 1</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Hotel Serras Altas</h4>
+                <span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700">BR-020</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                Fácil acesso na saída da rodovia, estacionamento seguro para carro com pertences de mudança e café matinal cedo.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Serras+Altas+Formosa+GO" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Premier Hotel</h4>
+                <span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700">Centro</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                Quartos confortáveis com ar-condicionado e bom isolamento acústico para descansar bem da madrugada.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Premier+Hotel+Formosa+GO" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Alfa Plaza Hotel</h4>
+                <span class="text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700">Central</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                Ótimo custo-benefício, atendimento elogiado e estrutura prática para chegada rápida e descanso tranquilo.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Alfa+Plaza+Hotel+Formosa+GO" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotéis Piauí (Bom Jesus & Corrente) -->
+      <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-3xl p-5 sm:p-6 shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <h3 class="text-lg font-extrabold text-slate-900 dark:text-white">Segundo Pernoite: Bom Jesus ou Corrente (PI)</h3>
+          </div>
+          <span class="text-xs bg-amber-500/15 text-amber-700 dark:text-amber-300 px-2.5 py-1 rounded-full border border-amber-500/30 font-bold">Fim do Dia 2</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Gurguéia Park Hotel</h4>
+                <span class="text-xs bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-800">Bom Jesus</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                A melhor referência para viajantes na BR-135. Estacionamento amplo, restaurante no local e piscina.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Gurgueia+Park+Bom+Jesus+PI" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Real Hotel</h4>
+                <span class="text-xs bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-400 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-800">Bom Jesus</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                Quartos práticos, ótima climatização (essencial para o calor do sul piauiense) e saída ágil pela manhã.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Real+Hotel+Bom+Jesus+PI" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div>
+              <div class="flex justify-between items-start">
+                <h4 class="font-bold text-slate-900 dark:text-white text-base">Gran Valle Hotel</h4>
+                <span class="text-xs bg-amber-100 dark:bg-slate-800 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded border border-amber-300 dark:border-slate-700">Corrente (Opção)</span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+                Caso prefiram parar ~1h30 antes de Bom Jesus e não pegar o trecho noturno da BR-135.
+              </p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Gran+Valle+Hotel+Corrente+PI" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Abrir no Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= SEÇÃO 6: GUIA PREVENTIVO E SEGURANÇA ================= -->
+    <section id="seguranca" class="space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-2 text-xs uppercase font-extrabold tracking-wider text-amber-600 dark:text-amber-400 mb-1">
+          <i data-lucide="shield-check" class="w-4 h-4"></i> Guia Preventivo de Estrada
+        </div>
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Recomendações Cruciais de Segurança</h2>
+        <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-sm mt-0.5">Orientações de ouro para conduzir o Fox carregado com total tranquilidade.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Fox e Distribuição de Peso -->
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
+            <i data-lucide="weight" class="w-5 h-5 text-emerald-500"></i>
+            Distribuição de Peso no Fox
+          </h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Peso no Assoalho:</strong> Caixas pesadas (louças, livros, ferramentas) devem ficar no fundo do porta-malas ou atrás dos bancos dianteiros, baixando o centro de gravidade do Fox.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Calibragem de Carga Cheia:</strong> Calibre 32-35 psi nos 4 pneus e <strong>coloque 35-36 psi no estepe</strong>. Carro pesado exige pressão máxima recomendada no manual.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Visão Traseira Livre:</strong> Evite empilhar caixas até o teto que tapem 100% o retrovisor central. Regule os laterais ligeiramente mais abertos.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Alertas de Rodovia -->
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-500"></i>
+            Perigos na Estrada (BR-135 e Sertão)
+          </h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+              <span><strong>Atenção Máxima na BR-135:</strong> Rodovia de tráfego intenso de bitrens graneleiros. Respeite desníveis de acostamento e nunca ultrapasse sem visibilidade de 1 km à frente.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+              <span><strong>Animais na Pista (PI e CE):</strong> Especialmente após as 17h, é frequente a presença de jumentos e animais soltos no acostamento. Reduza a velocidade ao entardecer.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
+              <span><strong>Regra de Ouro do 1/4 de Tanque:</strong> Nunca deixe o ponteiro baixar de 1/4 na BA, PI e CE. Há trechos com mais de 80 km sem postos confiáveis.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Conectividade e Pedágios -->
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
+            <i data-lucide="wifi-off" class="w-5 h-5 text-blue-500"></i>
+            Mapas Offline & Conectividade
+          </h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="download" class="w-4 h-4 text-blue-500 shrink-0 mt-0.5"></i>
+              <span><strong>Baixe Áreas Offline no Google Maps:</strong> Faça download no Wi-Fi das áreas de Goiás, oeste baiano e sul do Piauí. Há extensos "buracos de sinal" de operadora.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="credit-card" class="w-4 h-4 text-blue-500 shrink-0 mt-0.5"></i>
+              <span><strong>Tag de Pedágio Carregada:</strong> Certifique-se de que a tag (Sem Parar, ConectCar, Veloe) tem saldo ativo para passar direto nas praças em SP e MG sem pegar filas.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kit de Emergência a Bordo -->
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
+            <i data-lucide="first-aid" class="w-5 h-5 text-red-500"></i>
+            Kit de Emergência a Bordo
+          </h3>
+          <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Água e Lanche Prático:</strong> Leve ao menos 5L de água potável no carro e petiscos para não depender de paradas caso haja atraso no trânsito.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
+              <span><strong>Itens Técnicos:</strong> Lanterna com pilhas novas, cabo para recarga de bateria (chupeta), chave de roda e macaco testados previamente na garagem.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-5xl mx-auto px-4">
+      <p class="font-bold text-slate-700 dark:text-slate-300">Boa viagem e excelente recomeço para vocês em Jaguaribe - CE! 🚗✨</p>
+      <p class="mt-1">Roteiro planejado para o Volkswagen Fox 1.6 • Dados salvos no seu navegador para uso 100% offline na estrada.</p>
+    </div>
+  </footer>
+
+  <!-- ================= MENU FIXO INFERIOR (BOTTOM NAV MOBILE) ================= -->
+  <aside aria-label="Navegação rápida" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 py-2 px-3 no-print">
+    <div class="max-w-md mx-auto flex items-center justify-around text-[10px] font-bold">
+      <a href="#checklist" class="flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
+        <i data-lucide="check-square" class="w-4 h-4"></i>
+        <span>Marcos</span>
+      </a>
+
+      <a href="#previagem" class="flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-blue-500 active:text-blue-500">
+        <i data-lucide="clipboard-check" class="w-4 h-4"></i>
+        <span>Pré-Viagem</span>
+      </a>
+
+      <a href="#roteiro" class="flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
+        <i data-lucide="map" class="w-4 h-4"></i>
+        <span>Roteiro GPS</span>
+      </a>
+
+      <a href="#combustivel" class="flex flex-col items-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
+        <i data-lucide="fuel" class="w-4 h-4"></i>
+        <span>Tanque Fox</span>
+      </a>
+
+      <button onclick="openSosModal()" class="flex flex-col items-center gap-1 text-red-600 dark:text-red-400 font-extrabold">
+        <i data-lucide="phone-call" class="w-4 h-4"></i>
+        <span>SOS</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= MODAL CENTRAL DE EMERGÊNCIA (SOS) ================= -->
+  <div id="sosModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2.5 text-red-600 dark:text-red-400">
+          <i data-lucide="shield-alert" class="w-6 h-6"></i>
+          <h3 class="text-xl font-black text-slate-900 dark:text-white">SOS & Telefones de Emergência</h3>
+        </div>
+        <button onclick="closeSosModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-600 dark:text-slate-400 mt-3">
+        Toque para discar imediatamente em caso de emergência ou pane mecânica na rodovia:
+      </p>
+
+      <!-- Botões de Discagem Rápida -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+        <!-- PRF -->
+        <a href="tel:191" class="flex items-center justify-between p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 hover:bg-red-100 transition">
+          <div class="flex items-center gap-3">
+            <span class="p-2 bg-red-600 text-white rounded-xl font-black text-xs">191</span>
+            <div>
+              <div class="font-extrabold text-sm text-slate-900 dark:text-white">PRF</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Polícia Rodoviária Federal</div>
+            </div>
+          </div>
+          <i data-lucide="phone" class="w-4 h-4 text-red-600 dark:text-red-400"></i>
+        </a>
+
+        <!-- SAMU -->
+        <a href="tel:192" class="flex items-center justify-between p-3.5 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 hover:bg-red-100 transition">
+          <div class="flex items-center gap-3">
+            <span class="p-2 bg-red-600 text-white rounded-xl font-black text-xs">192</span>
+            <div>
+              <div class="font-extrabold text-sm text-slate-900 dark:text-white">SAMU</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Socorro Médico de Urgência</div>
+            </div>
+          </div>
+          <i data-lucide="phone" class="w-4 h-4 text-red-600 dark:text-red-400"></i>
+        </a>
+
+        <!-- Bombeiros -->
+        <a href="tel:193" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div class="flex items-center gap-3">
+            <span class="p-2 bg-slate-700 text-white rounded-xl font-black text-xs">193</span>
+            <div>
+              <div class="font-extrabold text-sm text-slate-900 dark:text-white">Bombeiros</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400">Resgate e Incêndio</div>
+            </div>
+          </div>
+          <i data-lucide="phone" class="w-4 h-4 text-slate-600 dark:text-slate-400"></i>
+        </a>
+
+        <!-- Eco050 (Guincho BR-050) -->
+        <a href="tel:08009400700" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div>
+            <div class="font-extrabold text-sm text-slate-900 dark:text-white">Eco050 (MG/GO)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 940 0700 (Guincho BR-050)</div>
+          </div>
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </a>
+
+        <!-- Triunfo Concebra -->
+        <a href="tel:08000600050" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div>
+            <div class="font-extrabold text-sm text-slate-900 dark:text-white">Triunfo Concebra</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 060 0050 (BR-040 / Entorno DF)</div>
+          </div>
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </a>
+
+        <!-- Ecovias (Imigrantes/Anchieta) -->
+        <a href="tel:08000197878" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div>
+            <div class="font-extrabold text-sm text-slate-900 dark:text-white">Ecovias (SP)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 019 7878 (Imigrantes/Subida)</div>
+          </div>
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </a>
+      </div>
+
+      <!-- Procedimento Seguro em Caso de Pane -->
+      <div class="mt-5 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-800 dark:text-amber-200">
+        <strong class="flex items-center gap-1.5 font-bold mb-1">
+          <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-500"></i> O que fazer em caso de pane mecânica na pista:
+        </strong>
+        <p>1. Ligue o pisca-alerta imediatamente e encoste no acostamento.</p>
+        <p>2. Posicione o triângulo a <strong>30 passos largos (pelo menos 50 metros)</strong> atrás do carro.</p>
+        <p>3. Todos os ocupantes devem sair pelo lado direito e aguardar <strong>atrás do guard rail</strong> ou longe do fluxo de veículos.</p>
+      </div>
+
+      <button onclick="closeSosModal()" class="mt-5 w-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 py-3 rounded-xl font-bold text-xs transition">
+        Fechar Painel SOS
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. REGISTRO DO SERVICE WORKER (PWA 100% OFFLINE)
+    // -------------------------------------------------------------
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((reg) => console.log('[PWA] Service Worker registrado com sucesso:', reg.scope))
+          .catch((err) => console.warn('[PWA] Erro ao registrar Service Worker:', err));
+      });
+    }
+
+    // Detector de status online/offline na estrada
+    function updateOnlineStatus() {
+      const isOnline = navigator.onLine;
+      const icon = document.getElementById('offlineStatusIcon');
+      const text = document.getElementById('offlineStatusText');
+      if (!isOnline) {
+        text.innerText = 'Modo Offline Ativo';
+        text.className = 'text-[11px] font-bold text-amber-500';
+      } else {
+        text.innerText = 'Online / Sincronizado';
+        text.className = 'text-[11px] font-bold text-emerald-700 dark:text-emerald-300';
+      }
+    }
+    window.addEventListener('online', updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+
+    // Botão de Instalação do PWA
+    let deferredPrompt = null;
+    const installBtn = document.getElementById('pwaInstallBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (installBtn) {
+        installBtn.classList.remove('hidden');
+        installBtn.classList.add('inline-flex');
+      }
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          installBtn.classList.add('hidden');
+        }
+        deferredPrompt = null;
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 2. CONTROLE DE TEMA (CLARO / ESCURO COM DETECÇÃO AUTOMÁTICA)
+    // -------------------------------------------------------------
+    function initTheme() {
+      const savedTheme = localStorage.getItem('viagem_theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        // Modo inteligente baseado no relógio: 06h às 18h Claro, 18h às 06h Escuro
+        const currentHour = new Date().getHours();
+        if (currentHour >= 6 && currentHour < 18) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      }
+      updateThemeIcon();
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('viagem_theme', isDark ? 'dark' : 'light');
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+        lucide.createIcons();
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 3. MODAL DE EMERGÊNCIA (SOS)
+    // -------------------------------------------------------------
+    function openSosModal() {
+      document.getElementById('sosModal').classList.remove('hidden');
+    }
+    function closeSosModal() {
+      document.getElementById('sosModal').classList.add('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // 4. CHECKLIST DOS MARCOS DA VIAGEM
+    // -------------------------------------------------------------
+    const checkpointsData = [
+      { id: 'chk_1', day: 'Dia 1', dayKey: 'dia1', time: '22:00', title: 'Saída de Guarujá (SP)', desc: 'Partida noturna, tanque cheio e pneus calibrados.' },
+      { id: 'chk_2', day: 'Dia 1', dayKey: 'dia1', time: '23:15', title: 'Subida da Imigrantes / Rodoanel', desc: 'Acesso à Rodovia dos Bandeirantes ou Anhanguera.' },
+      { id: 'chk_3', day: 'Dia 1', dayKey: 'dia1', time: '01:00', title: 'Interior Paulista (Bandeirantes/Anhanguera)', desc: 'Pista de alto padrão e tráfego leve de madrugada.' },
+      { id: 'chk_4', day: 'Dia 1', dayKey: 'dia1', time: '02:30', title: 'Ribeirão Preto - SP (~380 km)', desc: 'Parada rápida para café e esticar as pernas.' },
+      { id: 'chk_5', day: 'Dia 1', dayKey: 'dia1', time: '06:00', title: 'Uberaba - MG (Amanhecer ~590 km)', desc: 'Café matinal reforçado no Triângulo e troca de motorista.' },
+      { id: 'chk_6', day: 'Dia 1', dayKey: 'dia1', time: '07:30', title: 'Uberlândia - MG', desc: 'Seguindo pela rodovia BR-050 duplicada.' },
+      { id: 'chk_7', day: 'Dia 1', dayKey: 'dia1', time: '09:30', title: 'Catalão - GO', desc: 'Entrada oficial no estado de Goiás.' },
+      { id: 'chk_8', day: 'Dia 1', dayKey: 'dia1', time: '12:00', title: 'Cristalina - GO (~980 km)', desc: 'Parada para almoço e abastecimento de gasolina.' },
+      { id: 'chk_9', day: 'Dia 1', dayKey: 'dia1', time: '15:00', title: 'Formosa - GO (Pernoite 1)', desc: 'Chegada no primeiro pernoite após 1.165 km rodados!' },
+      { id: 'chk_10', day: 'Dia 2', dayKey: 'dia2', time: '06:00', title: 'Saída de Formosa (BR-020)', desc: 'Início do Dia 2 bem cedo rumo à Bahia.' },
+      { id: 'chk_11', day: 'Dia 2', dayKey: 'dia2', time: '09:30', title: 'Posse - GO', desc: 'Última cidade goiana antes da fronteira baiana.' },
+      { id: 'chk_12', day: 'Dia 2', dayKey: 'dia2', time: '12:00', title: 'Luís Eduardo Magalhães - BA', desc: 'Entrada na capital do agronegócio baiano.' },
+      { id: 'chk_13', day: 'Dia 2', dayKey: 'dia2', time: '13:00', title: 'Barreiras - BA (~510 km no dia)', desc: 'Almoço reforçado e abastecimento com combustível confiável.' },
+      { id: 'chk_14', day: 'Dia 2', dayKey: 'dia2', time: '15:00', title: 'Entrada na BR-135', desc: 'Redobrar atenção com caminhões e desníveis no acostamento.' },
+      { id: 'chk_15', day: 'Dia 2', dayKey: 'dia2', time: '17:00', title: 'Corrente - PI (~860 km)', desc: 'Entrada no Piauí (ponto alternativo de descanso).' },
+      { id: 'chk_16', day: 'Dia 2', dayKey: 'dia2', time: '19:00', title: 'Bom Jesus - PI (Pernoite 2)', desc: 'Encerramento do Dia 2 para jantar e repouso.' },
+      { id: 'chk_17', day: 'Dia 3', dayKey: 'dia3', time: '06:00', title: 'Saída de Bom Jesus (BR-135)', desc: 'Início do último dia de viagem.' },
+      { id: 'chk_18', day: 'Dia 3', dayKey: 'dia3', time: '09:00', title: 'Floriano - PI', desc: 'Cruzando as margens do Rio Parnaíba.' },
+      { id: 'chk_19', day: 'Dia 3', dayKey: 'dia3', time: '12:00', title: 'Picos - PI (Almoço Dia 3)', desc: 'Parada para almoço e último abastecimento no PI.' },
+      { id: 'chk_20', day: 'Dia 3', dayKey: 'dia3', time: '15:30', title: 'Fronteiras / Icó (Entrada no CE)', desc: 'Descida da Chapada e conexão com a BR-116 cearense.' },
+      { id: 'chk_21', day: 'Dia 3', dayKey: 'dia3', time: '18:30', title: 'Jaguaribe - CE (Chegada Final!)', desc: 'Destino alcançado com vitória e mudança completa!' }
+    ];
+
+    let currentCheckpointFilter = 'all';
+
+    function getStoredCheckpoints() {
+      try {
+        const data = localStorage.getItem('viagem_guaruja_jaguaribe_checkpoints_v2');
+        return data ? JSON.parse(data) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveStoredCheckpoints(state) {
+      try {
+        localStorage.setItem('viagem_guaruja_jaguaribe_checkpoints_v2', JSON.stringify(state));
+      } catch (e) {
+        console.warn('LocalStorage inacessível');
+      }
+    }
+
+    function setCheckpointFilter(filter) {
+      currentCheckpointFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-600', 'text-white');
+        btn.classList.add('bg-slate-100', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+      });
+      const activeBtn = document.getElementById(`btnFilter_${filter}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-900', 'text-slate-700', 'dark:text-slate-300');
+        activeBtn.classList.add('bg-emerald-600', 'text-white');
+      }
+      renderCheckpoints();
+    }
+
+    function renderCheckpoints() {
+      const state = getStoredCheckpoints();
+      const container = document.getElementById('checkpointsList');
+      container.innerHTML = '';
+
+      let checkedCount = 0;
+      let lastChecked = null;
+
+      checkpointsData.forEach((item, index) => {
+        const record = state[item.id];
+        const isChecked = !!(record && record.checked);
+        if (isChecked) {
+          checkedCount++;
+          lastChecked = { item, record, index };
+        }
+
+        // Aplica o filtro selecionado
+        if (currentCheckpointFilter === 'dia1' && item.dayKey !== 'dia1') return;
+        if (currentCheckpointFilter === 'dia2' && item.dayKey !== 'dia2') return;
+        if (currentCheckpointFilter === 'dia3' && item.dayKey !== 'dia3') return;
+        if (currentCheckpointFilter === 'pending' && isChecked) return;
+
+        const card = document.createElement('label');
+        card.className = `flex items-start gap-3 p-3.5 rounded-2xl border transition cursor-pointer select-none ${
+          isChecked 
+            ? 'bg-emerald-500/10 dark:bg-emerald-950/40 border-emerald-500/40 text-slate-800 dark:text-slate-200' 
+            : 'bg-slate-50 dark:bg-slate-900/80 border-slate-200 dark:border-slate-700/70 hover:border-slate-400 dark:hover:border-slate-600 text-slate-700 dark:text-slate-300'
+        }`;
+
+        const formattedTime = record && record.time ? record.time : null;
+
+        card.innerHTML = `
+          <input type="checkbox" id="${item.id}" class="mt-1 w-4 h-4 rounded border-slate-400 dark:border-slate-600 text-emerald-600 focus:ring-emerald-500 shrink-0" ${isChecked ? 'checked' : ''} onchange="toggleCheckpoint('${item.id}', this.checked)" />
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[11px] font-bold ${isChecked ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'} uppercase">${item.day} • Previsto: ${item.time}</span>
+              <span class="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700">#${index + 1}</span>
+            </div>
+            <h4 class="font-bold text-sm ${isChecked ? 'text-slate-900 dark:text-white line-through opacity-85' : 'text-slate-900 dark:text-white'} mt-0.5">${item.title}</h4>
+            <p class="text-xs ${isChecked ? 'text-emerald-800 dark:text-emerald-200/80' : 'text-slate-500 dark:text-slate-400'} mt-0.5">${item.desc}</p>
+            ${formattedTime ? `<span class="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-md"><i data-lucide="clock" class="w-3 h-3"></i> Passou às ${formattedTime}</span>` : ''}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+
+      // Atualiza barra de progresso
+      const total = checkpointsData.length;
+      const percent = Math.round((checkedCount / total) * 100);
+      document.getElementById('checkpointCount').innerText = `${checkedCount} de ${total}`;
+      document.getElementById('checkpointPercent').innerText = `${percent}%`;
+      document.getElementById('progressBar').style.width = `${percent}%`;
+
+      // Atualiza painel do último marco
+      const lastBox = document.getElementById('lastCheckedBox');
+      if (lastChecked) {
+        lastBox.classList.remove('hidden');
+        lastBox.classList.add('flex');
+        document.getElementById('lastCheckedTitle').innerText = lastChecked.item.title;
+        document.getElementById('lastCheckedTime').innerText = lastChecked.record.time ? `Às ${lastChecked.record.time}` : 'Concluído';
+      } else {
+        lastBox.classList.add('hidden');
+        lastBox.classList.remove('flex');
+      }
+
+      lucide.createIcons();
+    }
+
+    window.toggleCheckpoint = function(id, checked) {
+      const state = getStoredCheckpoints();
+      if (checked) {
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        state[id] = { checked: true, time: timeStr, date: now.toLocaleDateString('pt-BR') };
+      } else {
+        delete state[id];
+      }
+      saveStoredCheckpoints(state);
+      renderCheckpoints();
+    };
+
+    window.confirmResetChecklist = function() {
+      if (confirm('Tem certeza de que deseja reiniciar o checklist dos marcos da viagem?')) {
+        saveStoredCheckpoints({});
+        renderCheckpoints();
+      }
+    };
+
+    // Compartilhamento de Status no WhatsApp
+    window.shareWhatsAppProgress = function() {
+      const state = getStoredCheckpoints();
+      const total = checkpointsData.length;
+      let checkedCount = 0;
+      let lastPointTitle = 'Guarujá (SP)';
+      let lastPointTime = '';
+
+      checkpointsData.forEach((item) => {
+        if (state[item.id] && state[item.id].checked) {
+          checkedCount++;
+          lastPointTitle = item.title;
+          lastPointTime = state[item.id].time ? `(às ${state[item.id].time})` : '';
+        }
+      });
+
+      const percent = Math.round((checkedCount / total) * 100);
+
+      const message = `🚗 *Atualização da Viagem (Guarujá-SP ➔ Jaguaribe-CE)*\n\n` +
+        `📍 *Último marco alcançado:* ${lastPointTitle} ${lastPointTime}\n` +
+        `📊 *Progresso:* ${checkedCount} de ${total} marcos concluídos (${percent}%)\n` +
+        `🛣️ *Veículo:* VW Fox 1.6 carregado de mudança rodando com segurança!\n\n` +
+        `Acompanhe a rota conosco! ✨`;
+
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    };
+
+    // -------------------------------------------------------------
+    // 5. CHECKLIST PRÉ-VIAGEM (FOX 1.6 & MUDANÇA)
+    // -------------------------------------------------------------
+    const preViagemCategories = [
+      {
+        title: 'Mecânica do Fox 1.6',
+        icon: 'wrench',
+        items: [
+          { id: 'pv_1', text: 'Óleo do motor (VW 502.00 5w40) e filtro conferidos/trocados' },
+          { id: 'pv_2', text: 'Nível do líquido de arrefecimento (aditivo rosa G12/G13)' },
+          { id: 'pv_3', text: 'Pastilhas de freio e discos inspecionados' },
+          { id: 'pv_4', text: '4 pneus calibrados para carga máxima (32 a 35 psi)' },
+          { id: 'pv_5', text: 'Estepe com pressão extra calibrada em 35-36 psi' },
+          { id: 'pv_6', text: 'Macaco, chave de roda e triângulo testados na garagem' },
+          { id: 'pv_7', text: 'Palhetas de para-brisa e reservatório de água cheios' },
+          { id: 'pv_8', text: 'Lâmpadas de farol alto/baixo, setas, ré e freio testadas' }
+        ]
+      },
+      {
+        title: 'Documentos & Finanças',
+        icon: 'file-text',
+        items: [
+          { id: 'pv_9', text: 'CRLV digital baixado no celular para acesso offline no app CDT' },
+          { id: 'pv_10', text: 'CNH dos motoristas válida' },
+          { id: 'pv_11', text: 'Chave reserva do Fox guardada com o passageiro' },
+          { id: 'pv_12', text: 'Tag de pedágio (Sem Parar/ConectCar/Veloe) com saldo' },
+          { id: 'pv_13', text: 'R$ 150 a R$ 200 em dinheiro vivo para postos sem sinal' }
+        ]
+      },
+      {
+        title: 'Mudança & Conforto',
+        icon: 'package-check',
+        items: [
+          { id: 'pv_14', text: 'Caixas mais pesadas acomodadas no chão do carro' },
+          { id: 'pv_15', text: 'Visibilidade do retrovisor central preservada' },
+          { id: 'pv_16', text: 'Pelo menos 5L de água potável e lanches de fácil alcance' },
+          { id: 'pv_17', text: 'Cabo auxiliar de bateria (chupeta) no porta-malas' },
+          { id: 'pv_18', text: 'Carregador veicular 12V duplo + 2 cabos de celular' }
+        ]
+      }
+    ];
+
+    function getStoredPreViagem() {
+      try {
+        const data = localStorage.getItem('viagem_fox_previagem_v2');
+        return data ? JSON.parse(data) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveStoredPreViagem(state) {
+      try {
+        localStorage.setItem('viagem_fox_previagem_v2', JSON.stringify(state));
+      } catch (e) {
+        console.warn('LocalStorage inacessível');
+      }
+    }
+
+    function renderPreViagem() {
+      const state = getStoredPreViagem();
+      const container = document.getElementById('preViagemContainer');
+      container.innerHTML = '';
+
+      let totalItems = 0;
+      let checkedItems = 0;
+
+      preViagemCategories.forEach(cat => {
+        const catCard = document.createElement('div');
+        catCard.className = 'bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 flex flex-col justify-between';
+
+        let itemsHtml = '';
+        cat.items.forEach(item => {
+          totalItems++;
+          const isChecked = !!state[item.id];
+          if (isChecked) checkedItems++;
+
+          itemsHtml += `
+            <label class="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-300 cursor-pointer select-none">
+              <input type="checkbox" id="${item.id}" ${isChecked ? 'checked' : ''} onchange="togglePreViagem('${item.id}', this.checked)" class="mt-0.5 w-4 h-4 rounded border-slate-400 dark:border-slate-600 text-blue-600 focus:ring-blue-500 shrink-0" />
+              <span class="${isChecked ? 'line-through text-slate-400' : ''}">${item.text}</span>
+            </label>
+          `;
+        });
+
+        catCard.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white text-sm pb-2.5 mb-3 border-b border-slate-200 dark:border-slate-800">
+              <i data-lucide="${cat.icon}" class="w-4 h-4 text-blue-500"></i>
+              ${cat.title}
+            </div>
+            <div class="space-y-2.5">
+              ${itemsHtml}
+            </div>
+          </div>
+        `;
+
+        container.appendChild(catCard);
+      });
+
+      document.getElementById('preViagemCount').innerText = `${checkedItems} de ${totalItems} conferidos`;
+      lucide.createIcons();
+    }
+
+    window.togglePreViagem = function(id, checked) {
+      const state = getStoredPreViagem();
+      state[id] = checked;
+      saveStoredPreViagem(state);
+      renderPreViagem();
+    };
+
+    window.resetPreViagem = function() {
+      if (confirm('Deseja limpar as marcações do checklist de inspeção do Fox?')) {
+        saveStoredPreViagem({});
+        renderPreViagem();
+      }
+    };
+
+    // -------------------------------------------------------------
+    // 6. CALCULADORA DE COMBUSTÍVEL & AUTONOMIA DO FOX
+    // -------------------------------------------------------------
+    const distanceInput = document.getElementById('distanceInput');
+    const consumptionInput = document.getElementById('consumptionInput');
+    const fuelPriceInput = document.getElementById('fuelPriceInput');
+    const costDisplay = document.getElementById('costDisplay');
+    const litersDisplay = document.getElementById('litersDisplay');
+    const safeRangeDisplay = document.getElementById('safeRangeDisplay');
+    const stopsCountDisplay = document.getElementById('stopsCountDisplay');
+
+    function updateCalculations() {
+      const distance = parseFloat(distanceInput.value) || 0;
+      const consumption = parseFloat(consumptionInput.value) || 1;
+      const price = parseFloat(fuelPriceInput.value) || 0;
+
+      const liters = distance / consumption;
+      const totalCost = liters * price;
+
+      // Autonomia segura do Fox com margem de 1/4 (usando ~37,5 litros dos 50L)
+      const safeLiters = 37.5;
+      const safeRange = Math.round(safeLiters * consumption);
+      const estimatedStops = Math.ceil(distance / safeRange);
+
+      costDisplay.innerText = totalCost.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+      });
+
+      litersDisplay.innerText = liters.toLocaleString('pt-BR', {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }) + ' L';
+
+      safeRangeDisplay.innerText = `~${safeRange} km`;
+      stopsCountDisplay.innerText = `~${estimatedStops} paradas`;
+    }
+
+    distanceInput.addEventListener('input', updateCalculations);
+    consumptionInput.addEventListener('input', updateCalculations);
+    fuelPriceInput.addEventListener('input', updateCalculations);
+
+    // -------------------------------------------------------------
+    // 7. INICIALIZAÇÃO GERAL
+    // -------------------------------------------------------------
+    initTheme();
+    renderCheckpoints();
+    renderPreViagem();
+    updateCalculations();
+    updateOnlineStatus();
+  </script>
+</body>
+</html>
