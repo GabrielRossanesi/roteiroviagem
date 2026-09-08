@@ -89,6 +89,157 @@ body {
   padding-right: 5rem !important;
 }
 
+/* Suporte e Garantia Resiliente de Modo Escuro (Dark Mode) */
+.dark body {
+  background-color: rgb(15 23 42) !important;
+  color: rgb(241 245 249) !important;
+}
+
+.dark .dark\:bg-slate-900,
+.dark .dark\:bg-slate-900\/90,
+.dark .dark\:bg-slate-900\/80,
+.dark\:bg-slate-900:is(.dark *),
+.dark\:bg-slate-900\/90:is(.dark *),
+.dark\:bg-slate-900\/80:is(.dark *) {
+  background-color: rgb(15 23 42) !important;
+}
+
+.dark .dark\:bg-slate-800,
+.dark .dark\:bg-slate-800\/90,
+.dark\:bg-slate-800:is(.dark *),
+.dark\:bg-slate-800\/90:is(.dark *) {
+  background-color: rgb(30 41 59) !important;
+}
+
+.dark .dark\:bg-slate-950,
+.dark .dark\:bg-slate-950\/95,
+.dark .dark\:bg-slate-950\/70,
+.dark\:bg-slate-950:is(.dark *),
+.dark\:bg-slate-950\/95:is(.dark *),
+.dark\:bg-slate-950\/70:is(.dark *) {
+  background-color: rgb(2 6 23) !important;
+}
+
+.dark .dark\:bg-blue-950\/40,
+.dark .dark\:bg-blue-950\/50,
+.dark\:bg-blue-950\/40:is(.dark *),
+.dark\:bg-blue-950\/50:is(.dark *) {
+  background-color: rgba(15, 23, 42, 0.7) !important;
+}
+
+.dark .dark\:bg-emerald-950\/40,
+.dark .dark\:bg-emerald-950\/50,
+.dark\:bg-emerald-950\/40:is(.dark *),
+.dark\:bg-emerald-950\/50:is(.dark *) {
+  background-color: rgba(6, 78, 59, 0.4) !important;
+}
+
+.dark .dark\:border-slate-700,
+.dark .dark\:border-slate-700\/80,
+.dark .dark\:border-slate-700\/60,
+.dark\:border-slate-700:is(.dark *),
+.dark\:border-slate-700\/80:is(.dark *),
+.dark\:border-slate-700\/60:is(.dark *) {
+  border-color: rgb(51 65 85 / 0.8) !important;
+}
+
+.dark .dark\:border-slate-800,
+.dark\:border-slate-800:is(.dark *) {
+  border-color: rgb(30 41 59) !important;
+}
+
+.dark .dark\:border-blue-700\/50,
+.dark .dark\:border-blue-500\/30,
+.dark\:border-blue-700\/50:is(.dark *),
+.dark\:border-blue-500\/30:is(.dark *) {
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark .dark\:border-emerald-500\/20,
+.dark .dark\:border-emerald-700\/50,
+.dark\:border-emerald-500\/20:is(.dark *),
+.dark\:border-emerald-700\/50:is(.dark *) {
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.dark .dark\:text-white,
+.dark\:text-white:is(.dark *) {
+  color: rgb(255 255 255) !important;
+}
+
+.dark .dark\:text-slate-100,
+.dark\:text-slate-100:is(.dark *) {
+  color: rgb(241 245 249) !important;
+}
+
+.dark .dark\:text-slate-200,
+.dark\:text-slate-200:is(.dark *) {
+  color: rgb(226 232 240) !important;
+}
+
+.dark .dark\:text-slate-300,
+.dark\:text-slate-300:is(.dark *) {
+  color: rgb(203 213 225) !important;
+}
+
+.dark .dark\:text-slate-400,
+.dark\:text-slate-400:is(.dark *) {
+  color: rgb(148 163 184) !important;
+}
+
+.dark .dark\:text-slate-500,
+.dark\:text-slate-500:is(.dark *) {
+  color: rgb(100 116 139) !important;
+}
+
+.dark .dark\:text-blue-200,
+.dark .dark\:text-blue-300,
+.dark\:text-blue-200:is(.dark *),
+.dark\:text-blue-300:is(.dark *) {
+  color: rgb(147 197 253) !important;
+}
+
+.dark .dark\:text-emerald-200\/80,
+.dark .dark\:text-emerald-300,
+.dark .dark\:text-emerald-400,
+.dark\:text-emerald-200\/80:is(.dark *),
+.dark\:text-emerald-300:is(.dark *),
+.dark\:text-emerald-400:is(.dark *) {
+  color: rgb(110 231 183) !important;
+}
+
+.dark .dark\:text-red-300,
+.dark .dark\:text-red-400,
+.dark\:text-red-300:is(.dark *),
+.dark\:text-red-400:is(.dark *) {
+  color: rgb(252 165 165) !important;
+}
+
+.dark .dark\:hover\:text-red-400:hover,
+.dark\:hover\:text-red-400:hover:is(.dark *) {
+  color: rgb(248 113 113) !important;
+}
+
+.dark .dark\:hover\:bg-red-950\/30:hover,
+.dark .dark\:hover\:bg-red-950\/70:hover,
+.dark\:hover\:bg-red-950\/30:hover:is(.dark *),
+.dark\:hover\:bg-red-950\/70:hover:is(.dark *) {
+  background-color: rgba(69, 10, 10, 0.4) !important;
+}
+
+.dark .dark\:hover\:bg-slate-700:hover,
+.dark\:hover\:bg-slate-700:hover:is(.dark *) {
+  background-color: rgb(51 65 85) !important;
+}
+
+/* Espaçamentos verticais universais */
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1rem !important;
+}
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.75rem !important;
+}
+
 @media print {
   .no-print { display: none !important; }
   body { background: white !important; color: black !important; }
