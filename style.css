@@ -15,6 +15,18 @@ body {
   border-radius: 4px;
 }
 
+/* Ergonomia Veicular & Safe Area Insets (Road Copilot) */
+.safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
+}
+.safe-top {
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0.5rem));
+}
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+}
+
 @media print {
   .no-print { display: none !important; }
   body { background: white !important; color: black !important; }

@@ -1,24 +1,34 @@
-const CACHE_NAME = 'viagem-fox-offline-v2';
+/**
+ * sw.js - Service Worker 100% Offline (Road Copilot)
+ * Estratégia Cache-First para todos os módulos e assets estáticos locais.
+ */
+
+const CACHE_NAME = 'viagem-fox-modular-v3';
+
 const STATIC_ASSETS = [
   './',
   './index.html',
   './style.css',
   './manifest.json',
-  './icon.svg'
+  './icon.svg',
+  './js/data.js',
+  './js/store.js',
+  './js/icons.js',
+  './js/app.js'
 ];
 
-// Instalação do Service Worker e pré-cache de todos os arquivos essenciais
+// Instalação do Service Worker e pré-cache de todos os módulos
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Pré-cache dos arquivos 100% locais realizado');
+      console.log('[SW] Pré-cache dos módulos locais concluído');
       return cache.addAll(STATIC_ASSETS);
     })
   );
   self.skipWaiting();
 });
 
-// Ativação e limpeza imediata de versões anteriores
+// Ativação e limpeza de versões antigas do cache
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -35,18 +45,18 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Estratégia CACHE-FIRST para garantia total em modo avião (sem 3G/4G)
+// Estratégia CACHE-FIRST com fallback resiliente para modo avião / sem sinal
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        // Retorna imediatamente do cache (instantâneo e sem depender de rede)
+        // Retorna imediatamente do cache (instantâneo e sem tocar na rede)
         return cachedResponse;
       }
 
-      // Se não estiver em cache, busca na rede e guarda no cache para próximas visitas
+      // Se não estiver em cache, busca na rede e armazena para próximas visitas
       return fetch(event.request).then((networkResponse) => {
         if (!networkResponse || networkResponse.status !== 200) {
           return networkResponse;
@@ -59,7 +69,7 @@ self.addEventListener('fetch', (event) => {
 
         return networkResponse;
       }).catch(() => {
-        // Fallback para index.html em caso de falha de rede em navegação
+        // Fallback para navegação
         if (event.request.mode === 'navigate') {
           return caches.match('./index.html') || caches.match('./');
         }
