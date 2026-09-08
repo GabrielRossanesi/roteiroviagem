@@ -7,56 +7,17 @@
   <meta name="description" content="Guia e Roteiro de Mudança: Guarujá (SP) para Jaguaribe (CE) no Fox 1.6 com checklist offline, SOS e autonomia de combustível." />
   <meta name="theme-color" content="#059669" />
 
-  <!-- PWA Manifest & Icons -->
+  <!-- PWA & Standalone Support (Android & iOS) -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Viagem Fox" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-  <link rel="apple-touch-icon" href="./icon.svg" />
 
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              50: '#f0fdf4',
-              100: '#dcfce7',
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857',
-              800: '#065f46',
-              900: '#064e3b',
-            }
-          }
-        }
-      }
-    };
-  </script>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-    body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .custom-scrollbar::-webkit-scrollbar {
-      height: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #94a3b8;
-      border-radius: 4px;
-    }
-    @media print {
-      .no-print { display: none !important; }
-      body { background: white !important; color: black !important; }
-      .shadow-sm, .shadow-md, .shadow-xl { box-shadow: none !important; }
-    }
-  </style>
+  <!-- CSS Compilado 100% Local (Sem dependência de CDN na estrada) -->
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 antialiased min-h-screen pb-24 selection:bg-emerald-500 selection:text-white transition-colors duration-200">
@@ -80,8 +41,10 @@
           </button>
 
           <!-- Alternar Tema Claro / Escuro -->
-          <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar tema claro/escuro" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-300 border border-slate-300 dark:border-slate-700 transition">
-            <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+          <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar modo Claro / Escuro" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-amber-300 border border-slate-300 dark:border-slate-700 transition">
+            <span id="themeIconContainer" class="flex items-center justify-center">
+              <i data-lucide="sun" class="w-4 h-4"></i>
+            </span>
           </button>
 
           <!-- Botão SOS Rápido -->
@@ -110,10 +73,12 @@
         </div>
 
         <div id="statusBadgeContainer" class="flex items-center gap-2 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-700/60 p-2.5 rounded-2xl">
-          <i data-lucide="wifi" id="offlineStatusIcon" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+          <span id="offlineIconContainer" class="text-emerald-600 dark:text-emerald-400">
+            <i data-lucide="wifi" class="w-4 h-4"></i>
+          </span>
           <div>
             <div id="offlineStatusText" class="text-[11px] font-bold text-emerald-800 dark:text-emerald-300">Pronto para Offline</div>
-            <div class="text-[10px] text-slate-500 dark:text-slate-400">Salvo no navegador</div>
+            <div class="text-[10px] text-slate-500 dark:text-slate-400">Cache local ativo (sem 3G/4G)</div>
           </div>
         </div>
       </div>
@@ -301,7 +266,7 @@
 
             <!-- Botões GPS Dia 1 -->
             <a href="https://www.google.com/maps/dir/?api=1&origin=Guarujá,+SP&destination=Formosa,+GO&waypoints=Ribeirão+Preto,+SP|Uberaba,+MG|Cristalina,+GO" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 1
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Google Maps
             </a>
             <a href="https://waze.com/ul?q=Formosa,+GO&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
               <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
@@ -360,7 +325,7 @@
             <div>
               <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">14:30 – 15:30 (Chegada Dia 1)</span>
               <h4 class="font-bold text-slate-900 dark:text-white text-sm sm:text-base">Pernoite 1 em Formosa (GO)</h4>
-              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Check-in antecipado no hotel, banho relaxante e almoço tardio/descanso merecido após cruzar a noite na estrada.</p>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Check-in antecipado no hotel, banho relaxante e descanso merecido após cruzar a noite na estrada.</p>
             </div>
           </div>
         </div>
@@ -387,7 +352,7 @@
 
             <!-- Botões GPS Dia 2 -->
             <a href="https://www.google.com/maps/dir/?api=1&origin=Formosa,+GO&destination=Bom+Jesus,+PI&waypoints=Luís+Eduardo+Magalhães,+BA|Barreiras,+BA|Corrente,+PI" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 2
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Google Maps
             </a>
             <a href="https://waze.com/ul?q=Bom+Jesus,+PI&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
               <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
@@ -455,7 +420,7 @@
 
             <!-- Botões GPS Dia 3 -->
             <a href="https://www.google.com/maps/dir/?api=1&origin=Bom+Jesus,+PI&destination=Jaguaribe,+CE&waypoints=Floriano,+PI|Picos,+PI|Icó,+CE" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i> Maps Dia 3
+              <i data-lucide="map" class="w-3.5 h-3.5"></i> Google Maps
             </a>
             <a href="https://waze.com/ul?q=Jaguaribe,+CE&navigate=yes" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 bg-sky-600 hover:bg-sky-500 text-white font-bold py-1.5 px-3 rounded-xl transition shadow">
               <i data-lucide="navigation" class="w-3.5 h-3.5"></i> Waze
@@ -926,7 +891,7 @@
       </div>
 
       <p class="text-xs text-slate-600 dark:text-slate-400 mt-3">
-        Toque para discar imediatamente em caso de emergência ou pane mecânica na rodovia:
+        Toque para discar imediatamente em caso de emergência ou socorro mecânico na rodovia:
       </p>
 
       <!-- Botões de Discagem Rápida -->
@@ -967,6 +932,24 @@
           <i data-lucide="phone" class="w-4 h-4 text-slate-600 dark:text-slate-400"></i>
         </a>
 
+        <!-- Ecovias (Imigrantes/Anchieta) -->
+        <a href="tel:08000197878" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div>
+            <div class="font-extrabold text-sm text-slate-900 dark:text-white">Ecovias (SP)</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 019 7878 (Imigrantes/Subida)</div>
+          </div>
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </a>
+
+        <!-- CCR AutoBAn -->
+        <a href="tel:08000555550" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
+          <div>
+            <div class="font-extrabold text-sm text-slate-900 dark:text-white">CCR AutoBAn</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 055 5550 (Bandeirantes/Anhanguera)</div>
+          </div>
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+        </a>
+
         <!-- Eco050 (Guincho BR-050) -->
         <a href="tel:08009400700" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
           <div>
@@ -981,15 +964,6 @@
           <div>
             <div class="font-extrabold text-sm text-slate-900 dark:text-white">Triunfo Concebra</div>
             <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 060 0050 (BR-040 / Entorno DF)</div>
-          </div>
-          <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
-        </a>
-
-        <!-- Ecovias (Imigrantes/Anchieta) -->
-        <a href="tel:08000197878" class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 transition">
-          <div>
-            <div class="font-extrabold text-sm text-slate-900 dark:text-white">Ecovias (SP)</div>
-            <div class="text-[11px] text-slate-500 dark:text-slate-400">0800 019 7878 (Imigrantes/Subida)</div>
           </div>
           <i data-lucide="truck" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
         </a>
@@ -1012,8 +986,75 @@
   </div>
 
 
-  <!-- ================= JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT LOCAL (100% OFFLINE) ================= -->
   <script>
+    // -------------------------------------------------------------
+    // DICIONÁRIO DE ÍCONES SVG INLINE (ZERO DEPENDÊNCIAS DE CDN)
+    // -------------------------------------------------------------
+    const SVG_ICONS = {
+  "compass": "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"></path>",
+  "download": "<path d=\"M12 15V3\"></path><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"></path><path d=\"m7 10 5 5 5-5\"></path>",
+  "moon": "<path d=\"M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z\"></path>",
+  "phone-call": "<path d=\"M13 2a9 9 0 0 1 9 9\"></path><path d=\"M13 6a5 5 0 0 1 5 5\"></path><path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\"></path>",
+  "printer": "<path d=\"M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2\"></path><path d=\"M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6\"></path><rect x=\"6\" y=\"14\" width=\"12\" height=\"8\" rx=\"1\"></rect>",
+  "arrow-right": "<path d=\"M5 12h14\"></path><path d=\"m12 5 7 7-7 7\"></path>",
+  "wifi": "<path d=\"M12 20h.01\"></path><path d=\"M2 8.82a15 15 0 0 1 20 0\"></path><path d=\"M5 12.859a10 10 0 0 1 14 0\"></path><path d=\"M8.5 16.429a5 5 0 0 1 7 0\"></path>",
+  "map-pin": "<path d=\"M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle>",
+  "clock": "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 6v6l4 2\"></path>",
+  "car": "<path d=\"M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2\"></path><circle cx=\"7\" cy=\"17\" r=\"2\"></circle><path d=\"M9 17h6\"></path><circle cx=\"17\" cy=\"17\" r=\"2\"></circle>",
+  "bed-double": "<path d=\"M2 20v-8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8\"></path><path d=\"M4 10V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4\"></path><path d=\"M12 4v6\"></path><path d=\"M2 18h20\"></path>",
+  "check-square": "<path d=\"M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344\"></path><path d=\"m9 11 3 3L22 4\"></path>",
+  "clipboard-check": "<rect width=\"8\" height=\"4\" x=\"8\" y=\"2\" rx=\"1\" ry=\"1\"></rect><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"></path><path d=\"m9 14 2 2 4-4\"></path>",
+  "calendar": "<path d=\"M8 2v3\"></path><path d=\"M16 2v3\"></path><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"></rect><path d=\"M3 9h18\"></path>",
+  "fuel": "<path d=\"M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 4 0v-6.998a2 2 0 0 0-.59-1.42L18 5\"></path><path d=\"M14 21V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v16\"></path><path d=\"M2 21h13\"></path><path d=\"M3 9h11\"></path>",
+  "bed": "<path d=\"M2 4v16\"></path><path d=\"M2 8h18a2 2 0 0 1 2 2v10\"></path><path d=\"M2 17h20\"></path><path d=\"M6 8v9\"></path>",
+  "shield-alert": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path><path d=\"M12 8v4\"></path><path d=\"M12 16h.01\"></path>",
+  "list-checks": "<path d=\"M13 5h8\"></path><path d=\"M13 12h8\"></path><path d=\"M13 19h8\"></path><path d=\"m3 17 2 2 4-4\"></path><path d=\"m3 7 2 2 4-4\"></path>",
+  "share-2": "<circle cx=\"18\" cy=\"5\" r=\"3\"></circle><circle cx=\"6\" cy=\"12\" r=\"3\"></circle><circle cx=\"18\" cy=\"19\" r=\"3\"></circle><line x1=\"8.59\" x2=\"15.42\" y1=\"13.51\" y2=\"17.49\"></line><line x1=\"15.41\" x2=\"8.59\" y1=\"6.51\" y2=\"10.49\"></line>",
+  "rotate-ccw": "<path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"></path><path d=\"M3 3v5h5\"></path>",
+  "flag": "<path d=\"M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528\"></path>",
+  "check-circle-2": "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"m16 9-5.5 5.5L8 12\"></path>",
+  "wrench": "<path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z\"></path>",
+  "file-text": "<path d=\"M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z\"></path><path d=\"M14 2v5a1 1 0 0 0 1 1h5\"></path><path d=\"M10 9H8\"></path><path d=\"M16 13H8\"></path><path d=\"M16 17H8\"></path>",
+  "package-check": "<path d=\"M12 22V12\"></path><path d=\"m16 17 2 2 4-4\"></path><path d=\"M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753\"></path><path d=\"M3.29 7 12 12l8.71-5\"></path><path d=\"m7.5 4.27 8.997 5.148\"></path>",
+  "milestone": "<path d=\"M12 13v8\"></path><path d=\"M12 3v3\"></path><path d=\"M18.172 6a2 2 0 0 1 1.414.586l2.06 2.06a1.207 1.207 0 0 1 0 1.708l-2.06 2.06a2 2 0 0 1-1.414.586H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z\"></path>",
+  "map": "<path d=\"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z\"></path><path d=\"M15 5.764v15\"></path><path d=\"M9 3.236v15\"></path>",
+  "navigation": "<polygon points=\"3 11 22 2 13 21 11 13 3 11\"></polygon>",
+  "sunrise": "<path d=\"M12 2v8\"></path><path d=\"m4.93 10.93 1.41 1.41\"></path><path d=\"M2 18h2\"></path><path d=\"M20 18h2\"></path><path d=\"m19.07 10.93-1.41 1.41\"></path><path d=\"M22 22H2\"></path><path d=\"m8 6 4-4 4 4\"></path><path d=\"M16 18a4 4 0 0 0-8 0\"></path>",
+  "party-popper": "<path d=\"M5.8 11.3 2 22l10.7-3.79\"></path><path d=\"M4 3h.01\"></path><path d=\"M22 8h.01\"></path><path d=\"M15 2h.01\"></path><path d=\"M22 20h.01\"></path><path d=\"m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10\"></path><path d=\"m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17\"></path><path d=\"m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7\"></path><path d=\"M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z\"></path>",
+  "receipt": "<path d=\"M12 17V7\"></path><path d=\"M16 8h-6a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H8\"></path><path d=\"M4 3a1 1 0 0 1 1-1 1.3 1.3 0 0 1 .7.2l.933.6a1.3 1.3 0 0 0 1.4 0l.934-.6a1.3 1.3 0 0 1 1.4 0l.933.6a1.3 1.3 0 0 0 1.4 0l.933-.6a1.3 1.3 0 0 1 1.4 0l.934.6a1.3 1.3 0 0 0 1.4 0l.933-.6A1.3 1.3 0 0 1 19 2a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1 1.3 1.3 0 0 1-.7-.2l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.934.6a1.3 1.3 0 0 1-1.4 0l-.933-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-1.4 0l-.934-.6a1.3 1.3 0 0 0-1.4 0l-.933.6a1.3 1.3 0 0 1-.7.2 1 1 0 0 1-1-1z\"></path>",
+  "shield-check": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path><path d=\"m9 12 2 2 4-4\"></path>",
+  "weight": "<circle cx=\"12\" cy=\"5\" r=\"3\"></circle><path d=\"M6.5 8a2 2 0 0 0-1.905 1.46L2.1 18.5A2 2 0 0 0 4 21h16a2 2 0 0 0 1.925-2.54L19.4 9.5A2 2 0 0 0 17.48 8Z\"></path>",
+  "check": "<path d=\"M20 6 9 17l-5-5\"></path>",
+  "alert-triangle": "<path d=\"m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3\"></path><path d=\"M12 9v4\"></path><path d=\"M12 17h.01\"></path>",
+  "alert-circle": "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"></line><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"></line>",
+  "wifi-off": "<path d=\"M12 20h.01\"></path><path d=\"M8.5 16.429a5 5 0 0 1 7 0\"></path><path d=\"M5 12.859a10 10 0 0 1 5.17-2.69\"></path><path d=\"M19 12.859a10 10 0 0 0-2.007-1.523\"></path><path d=\"M2 8.82a15 15 0 0 1 4.177-2.643\"></path><path d=\"M22 8.82a15 15 0 0 0-11.288-3.764\"></path><path d=\"m2 2 20 20\"></path>",
+  "credit-card": "<rect width=\"20\" height=\"14\" x=\"2\" y=\"5\" rx=\"2\"></rect><line x1=\"2\" x2=\"22\" y1=\"10\" y2=\"10\"></line>",
+  "x": "<path d=\"M18 6 6 18\"></path><path d=\"m6 6 12 12\"></path>",
+  "phone": "<path d=\"M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384\"></path>",
+  "truck": "<path d=\"M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2\"></path><path d=\"M15 18H9\"></path><path d=\"M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14\"></path><circle cx=\"17\" cy=\"18\" r=\"2\"></circle><circle cx=\"7\" cy=\"18\" r=\"2\"></circle>",
+  "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"></circle><path d=\"M12 2v2\"></path><path d=\"M12 20v2\"></path><path d=\"m4.93 4.93 1.41 1.41\"></path><path d=\"m17.66 17.66 1.41 1.41\"></path><path d=\"M2 12h2\"></path><path d=\"M20 12h2\"></path><path d=\"m6.34 17.66-1.41 1.41\"></path><path d=\"m19.07 4.93-1.41 1.41\"></path>",
+  "first-aid": "<path d=\"M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path><rect width=\"20\" height=\"14\" x=\"2\" y=\"7\" rx=\"2\"></rect><path d=\"M12 11v6\"></path><path d=\"M9 14h6\"></path>"
+};
+
+    function getSvg(name, cls = 'w-4 h-4') {
+      const inner = SVG_ICONS[name] || '<circle cx="12" cy="12" r="10"></circle>';
+      return `<svg class="${cls}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+    }
+
+    function refreshIcons(root = document) {
+      root.querySelectorAll('[data-lucide]').forEach((el) => {
+        const name = el.getAttribute('data-lucide');
+        const cls = el.getAttribute('class') || 'w-4 h-4';
+        const span = document.createElement('span');
+        span.innerHTML = getSvg(name, cls);
+        const svg = span.firstElementChild;
+        if (el.id) svg.id = el.id;
+        svg.setAttribute('data-lucide', name);
+        el.replaceWith(svg);
+      });
+    }
+
     // -------------------------------------------------------------
     // 1. REGISTRO DO SERVICE WORKER (PWA 100% OFFLINE)
     // -------------------------------------------------------------
@@ -1028,14 +1069,16 @@
     // Detector de status online/offline na estrada
     function updateOnlineStatus() {
       const isOnline = navigator.onLine;
-      const icon = document.getElementById('offlineStatusIcon');
+      const container = document.getElementById('offlineIconContainer');
       const text = document.getElementById('offlineStatusText');
       if (!isOnline) {
         text.innerText = 'Modo Offline Ativo';
         text.className = 'text-[11px] font-bold text-amber-500';
+        if (container) container.innerHTML = getSvg('wifi-off', 'w-4 h-4 text-amber-500');
       } else {
         text.innerText = 'Online / Sincronizado';
         text.className = 'text-[11px] font-bold text-emerald-700 dark:text-emerald-300';
+        if (container) container.innerHTML = getSvg('wifi', 'w-4 h-4 text-emerald-600 dark:text-emerald-400');
       }
     }
     window.addEventListener('online', updateOnlineStatus);
@@ -1075,7 +1118,7 @@
       } else if (savedTheme === 'dark') {
         document.documentElement.classList.add('dark');
       } else {
-        // Modo inteligente baseado no relógio: 06h às 18h Claro, 18h às 06h Escuro
+        // Lógica inteligente automática pelo relógio: 06:00 às 18:00 Claro, 18:00 às 06:00 Escuro
         const currentHour = new Date().getHours();
         if (currentHour >= 6 && currentHour < 18) {
           document.documentElement.classList.remove('dark');
@@ -1094,10 +1137,9 @@
 
     function updateThemeIcon() {
       const isDark = document.documentElement.classList.contains('dark');
-      const icon = document.getElementById('themeIcon');
-      if (icon) {
-        icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-        lucide.createIcons();
+      const container = document.getElementById('themeIconContainer');
+      if (container) {
+        container.innerHTML = getSvg(isDark ? 'sun' : 'moon', 'w-4 h-4');
       }
     }
 
@@ -1115,27 +1157,27 @@
     // 4. CHECKLIST DOS MARCOS DA VIAGEM
     // -------------------------------------------------------------
     const checkpointsData = [
-      { id: 'chk_1', day: 'Dia 1', dayKey: 'dia1', time: '22:00', title: 'Saída de Guarujá (SP)', desc: 'Partida noturna, tanque cheio e pneus calibrados.' },
-      { id: 'chk_2', day: 'Dia 1', dayKey: 'dia1', time: '23:15', title: 'Subida da Imigrantes / Rodoanel', desc: 'Acesso à Rodovia dos Bandeirantes ou Anhanguera.' },
-      { id: 'chk_3', day: 'Dia 1', dayKey: 'dia1', time: '01:00', title: 'Interior Paulista (Bandeirantes/Anhanguera)', desc: 'Pista de alto padrão e tráfego leve de madrugada.' },
-      { id: 'chk_4', day: 'Dia 1', dayKey: 'dia1', time: '02:30', title: 'Ribeirão Preto - SP (~380 km)', desc: 'Parada rápida para café e esticar as pernas.' },
-      { id: 'chk_5', day: 'Dia 1', dayKey: 'dia1', time: '06:00', title: 'Uberaba - MG (Amanhecer ~590 km)', desc: 'Café matinal reforçado no Triângulo e troca de motorista.' },
-      { id: 'chk_6', day: 'Dia 1', dayKey: 'dia1', time: '07:30', title: 'Uberlândia - MG', desc: 'Seguindo pela rodovia BR-050 duplicada.' },
-      { id: 'chk_7', day: 'Dia 1', dayKey: 'dia1', time: '09:30', title: 'Catalão - GO', desc: 'Entrada oficial no estado de Goiás.' },
-      { id: 'chk_8', day: 'Dia 1', dayKey: 'dia1', time: '12:00', title: 'Cristalina - GO (~980 km)', desc: 'Parada para almoço e abastecimento de gasolina.' },
-      { id: 'chk_9', day: 'Dia 1', dayKey: 'dia1', time: '15:00', title: 'Formosa - GO (Pernoite 1)', desc: 'Chegada no primeiro pernoite após 1.165 km rodados!' },
-      { id: 'chk_10', day: 'Dia 2', dayKey: 'dia2', time: '06:00', title: 'Saída de Formosa (BR-020)', desc: 'Início do Dia 2 bem cedo rumo à Bahia.' },
-      { id: 'chk_11', day: 'Dia 2', dayKey: 'dia2', time: '09:30', title: 'Posse - GO', desc: 'Última cidade goiana antes da fronteira baiana.' },
-      { id: 'chk_12', day: 'Dia 2', dayKey: 'dia2', time: '12:00', title: 'Luís Eduardo Magalhães - BA', desc: 'Entrada na capital do agronegócio baiano.' },
-      { id: 'chk_13', day: 'Dia 2', dayKey: 'dia2', time: '13:00', title: 'Barreiras - BA (~510 km no dia)', desc: 'Almoço reforçado e abastecimento com combustível confiável.' },
-      { id: 'chk_14', day: 'Dia 2', dayKey: 'dia2', time: '15:00', title: 'Entrada na BR-135', desc: 'Redobrar atenção com caminhões e desníveis no acostamento.' },
-      { id: 'chk_15', day: 'Dia 2', dayKey: 'dia2', time: '17:00', title: 'Corrente - PI (~860 km)', desc: 'Entrada no Piauí (ponto alternativo de descanso).' },
-      { id: 'chk_16', day: 'Dia 2', dayKey: 'dia2', time: '19:00', title: 'Bom Jesus - PI (Pernoite 2)', desc: 'Encerramento do Dia 2 para jantar e repouso.' },
-      { id: 'chk_17', day: 'Dia 3', dayKey: 'dia3', time: '06:00', title: 'Saída de Bom Jesus (BR-135)', desc: 'Início do último dia de viagem.' },
-      { id: 'chk_18', day: 'Dia 3', dayKey: 'dia3', time: '09:00', title: 'Floriano - PI', desc: 'Cruzando as margens do Rio Parnaíba.' },
-      { id: 'chk_19', day: 'Dia 3', dayKey: 'dia3', time: '12:00', title: 'Picos - PI (Almoço Dia 3)', desc: 'Parada para almoço e último abastecimento no PI.' },
-      { id: 'chk_20', day: 'Dia 3', dayKey: 'dia3', time: '15:30', title: 'Fronteiras / Icó (Entrada no CE)', desc: 'Descida da Chapada e conexão com a BR-116 cearense.' },
-      { id: 'chk_21', day: 'Dia 3', dayKey: 'dia3', time: '18:30', title: 'Jaguaribe - CE (Chegada Final!)', desc: 'Destino alcançado com vitória e mudança completa!' }
+      { id: 'chk_1', day: 'Dia 1', dayKey: 'dia1', time: '22:00', km: 0, title: 'Saída de Guarujá (SP)', desc: 'Partida noturna, tanque cheio e pneus calibrados.' },
+      { id: 'chk_2', day: 'Dia 1', dayKey: 'dia1', time: '23:15', km: 85, title: 'Subida da Imigrantes / Rodoanel', desc: 'Acesso à Rodovia dos Bandeirantes ou Anhanguera.' },
+      { id: 'chk_3', day: 'Dia 1', dayKey: 'dia1', time: '01:00', km: 190, title: 'Interior Paulista (Bandeirantes/Anhanguera)', desc: 'Pista de alto padrão e tráfego leve de madrugada.' },
+      { id: 'chk_4', day: 'Dia 1', dayKey: 'dia1', time: '02:30', km: 380, title: 'Ribeirão Preto - SP (~380 km)', desc: 'Parada rápida para café e esticar as pernas.' },
+      { id: 'chk_5', day: 'Dia 1', dayKey: 'dia1', time: '06:00', km: 590, title: 'Uberaba - MG (Amanhecer ~590 km)', desc: 'Café matinal reforçado no Triângulo e troca de motorista.' },
+      { id: 'chk_6', day: 'Dia 1', dayKey: 'dia1', time: '07:30', km: 700, title: 'Uberlândia - MG', desc: 'Seguindo pela rodovia BR-050 duplicada.' },
+      { id: 'chk_7', day: 'Dia 1', dayKey: 'dia1', time: '09:30', km: 810, title: 'Catalão - GO', desc: 'Entrada oficial no estado de Goiás.' },
+      { id: 'chk_8', day: 'Dia 1', dayKey: 'dia1', time: '12:00', km: 980, title: 'Cristalina - GO (~980 km)', desc: 'Parada para almoço e abastecimento de gasolina.' },
+      { id: 'chk_9', day: 'Dia 1', dayKey: 'dia1', time: '15:00', km: 1165, title: 'Formosa - GO (Pernoite 1)', desc: 'Chegada no primeiro pernoite após 1.165 km rodados!' },
+      { id: 'chk_10', day: 'Dia 2', dayKey: 'dia2', time: '06:00', km: 1165, title: 'Saída de Formosa (BR-020)', desc: 'Início do Dia 2 bem cedo rumo à Bahia.' },
+      { id: 'chk_11', day: 'Dia 2', dayKey: 'dia2', time: '09:30', km: 1430, title: 'Posse - GO', desc: 'Última cidade goiana antes da fronteira baiana.' },
+      { id: 'chk_12', day: 'Dia 2', dayKey: 'dia2', time: '12:00', km: 1585, title: 'Luís Eduardo Magalhães - BA', desc: 'Entrada na capital do agronegócio baiano.' },
+      { id: 'chk_13', day: 'Dia 2', dayKey: 'dia2', time: '13:00', km: 1675, title: 'Barreiras - BA (~510 km no dia)', desc: 'Almoço reforçado e abastecimento com combustível confiável.' },
+      { id: 'chk_14', day: 'Dia 2', dayKey: 'dia2', time: '15:00', km: 1765, title: 'Entrada na BR-135', desc: 'Redobrar atenção com caminhões e desníveis no acostamento.' },
+      { id: 'chk_15', day: 'Dia 2', dayKey: 'dia2', time: '17:00', km: 2025, title: 'Corrente - PI (~860 km)', desc: 'Entrada no Piauí (ponto alternativo de descanso).' },
+      { id: 'chk_16', day: 'Dia 2', dayKey: 'dia2', time: '19:00', km: 2165, title: 'Bom Jesus - PI (Pernoite 2)', desc: 'Encerramento do Dia 2 para jantar e repouso.' },
+      { id: 'chk_17', day: 'Dia 3', dayKey: 'dia3', time: '06:00', km: 2165, title: 'Saída de Bom Jesus (BR-135)', desc: 'Início do último dia de viagem.' },
+      { id: 'chk_18', day: 'Dia 3', dayKey: 'dia3', time: '09:00', km: 2465, title: 'Floriano - PI', desc: 'Cruzando as margens do Rio Parnaíba.' },
+      { id: 'chk_19', day: 'Dia 3', dayKey: 'dia3', time: '12:00', km: 2655, title: 'Picos - PI (Almoço Dia 3)', desc: 'Parada para almoço e último abastecimento no PI.' },
+      { id: 'chk_20', day: 'Dia 3', dayKey: 'dia3', time: '15:30', km: 2920, title: 'Fronteiras / Icó (Entrada no CE)', desc: 'Descida da Chapada e conexão com a BR-116 cearense.' },
+      { id: 'chk_21', day: 'Dia 3', dayKey: 'dia3', time: '18:30', km: 3080, title: 'Jaguaribe - CE (Chegada Final!)', desc: 'Destino alcançado com vitória e mudança completa!' }
     ];
 
     let currentCheckpointFilter = 'all';
@@ -1206,12 +1248,12 @@
           <input type="checkbox" id="${item.id}" class="mt-1 w-4 h-4 rounded border-slate-400 dark:border-slate-600 text-emerald-600 focus:ring-emerald-500 shrink-0" ${isChecked ? 'checked' : ''} onchange="toggleCheckpoint('${item.id}', this.checked)" />
           <div class="flex-1">
             <div class="flex items-center justify-between gap-2">
-              <span class="text-[11px] font-bold ${isChecked ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'} uppercase">${item.day} • Previsto: ${item.time}</span>
+              <span class="text-[11px] font-bold ${isChecked ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'} uppercase">${item.day} • Previsto: ${item.time} (${item.km} km)</span>
               <span class="text-[10px] bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold px-2 py-0.5 rounded border border-slate-300 dark:border-slate-700">#${index + 1}</span>
             </div>
             <h4 class="font-bold text-sm ${isChecked ? 'text-slate-900 dark:text-white line-through opacity-85' : 'text-slate-900 dark:text-white'} mt-0.5">${item.title}</h4>
             <p class="text-xs ${isChecked ? 'text-emerald-800 dark:text-emerald-200/80' : 'text-slate-500 dark:text-slate-400'} mt-0.5">${item.desc}</p>
-            ${formattedTime ? `<span class="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-md"><i data-lucide="clock" class="w-3 h-3"></i> Passou às ${formattedTime}</span>` : ''}
+            ${formattedTime ? `<span class="mt-2 inline-flex items-center gap-1 text-[11px] font-extrabold text-emerald-700 dark:text-emerald-300 bg-emerald-500/15 px-2 py-0.5 rounded-md">${getSvg('clock', 'w-3 h-3')} Passou às ${formattedTime}</span>` : ''}
           </div>
         `;
 
@@ -1231,13 +1273,13 @@
         lastBox.classList.remove('hidden');
         lastBox.classList.add('flex');
         document.getElementById('lastCheckedTitle').innerText = lastChecked.item.title;
-        document.getElementById('lastCheckedTime').innerText = lastChecked.record.time ? `Às ${lastChecked.record.time}` : 'Concluído';
+        document.getElementById('lastCheckedTime').innerText = lastChecked.record.time ? `Às ${lastChecked.record.time} (~${lastChecked.item.km} km)` : `~${lastChecked.item.km} km`;
       } else {
         lastBox.classList.add('hidden');
         lastBox.classList.remove('flex');
       }
 
-      lucide.createIcons();
+      refreshIcons(container);
     }
 
     window.toggleCheckpoint = function(id, checked) {
@@ -1260,31 +1302,34 @@
       }
     };
 
-    // Compartilhamento de Status no WhatsApp
+    // Compartilhamento Dinâmico no WhatsApp
     window.shareWhatsAppProgress = function() {
       const state = getStoredCheckpoints();
       const total = checkpointsData.length;
       let checkedCount = 0;
       let lastPointTitle = 'Guarujá (SP)';
       let lastPointTime = '';
+      let maxKm = 0;
 
       checkpointsData.forEach((item) => {
         if (state[item.id] && state[item.id].checked) {
           checkedCount++;
           lastPointTitle = item.title;
-          lastPointTime = state[item.id].time ? `(às ${state[item.id].time})` : '';
+          lastPointTime = state[item.id].time ? ` (às ${state[item.id].time})` : '';
+          if (item.km > maxKm) maxKm = item.km;
         }
       });
 
       const percent = Math.round((checkedCount / total) * 100);
 
       const message = `🚗 *Atualização da Viagem (Guarujá-SP ➔ Jaguaribe-CE)*\n\n` +
-        `📍 *Último marco alcançado:* ${lastPointTitle} ${lastPointTime}\n` +
+        `📍 *Último marco:* ${lastPointTitle}${lastPointTime}\n` +
+        `🛣️ *Distância percorrida:* ~${maxKm} km de ~3.080 km\n` +
         `📊 *Progresso:* ${checkedCount} de ${total} marcos concluídos (${percent}%)\n` +
-        `🛣️ *Veículo:* VW Fox 1.6 carregado de mudança rodando com segurança!\n\n` +
-        `Acompanhe a rota conosco! ✨`;
+        `🚘 *Veículo:* VW Fox 1.6 carregado de mudança rodando com segurança!\n\n` +
+        `Acompanhe nossa rota rumo ao Ceará! ✨`;
 
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
     };
 
@@ -1376,7 +1421,7 @@
         catCard.innerHTML = `
           <div>
             <div class="flex items-center gap-2 font-black text-slate-900 dark:text-white text-sm pb-2.5 mb-3 border-b border-slate-200 dark:border-slate-800">
-              <i data-lucide="${cat.icon}" class="w-4 h-4 text-blue-500"></i>
+              ${getSvg(cat.icon, 'w-4 h-4 text-blue-500')}
               ${cat.title}
             </div>
             <div class="space-y-2.5">
@@ -1389,7 +1434,6 @@
       });
 
       document.getElementById('preViagemCount').innerText = `${checkedItems} de ${totalItems} conferidos`;
-      lucide.createIcons();
     }
 
     window.togglePreViagem = function(id, checked) {
@@ -1451,6 +1495,7 @@
     // -------------------------------------------------------------
     // 7. INICIALIZAÇÃO GERAL
     // -------------------------------------------------------------
+    refreshIcons();
     initTheme();
     renderCheckpoints();
     renderPreViagem();

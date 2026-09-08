@@ -1,7 +1,7 @@
 {
   "name": "Roteiro Guarujá ➔ Jaguaribe",
   "short_name": "Viagem Fox",
-  "description": "Roteiro e Guia de Bordo de Mudança: Guarujá (SP) para Jaguaribe (CE) - VW Fox 1.6",
+  "description": "Roteiro e Guia de Bordo de Mudança: Guarujá (SP) para Jaguaribe (CE) no Fox 1.6",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -14,6 +14,12 @@
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
