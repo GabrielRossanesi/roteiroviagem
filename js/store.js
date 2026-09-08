@@ -66,7 +66,8 @@ class TripStore {
       CHECKPOINTS: 'viagem_checkpoints_v3',
       PRE_VIAGEM: 'viagem_previagem_v3',
       FUEL: 'viagem_fuel_settings_v3',
-      THEME: 'viagem_theme_v3'
+      THEME: 'viagem_theme_v3',
+      REFUELS: 'viagem_abastecimentos_fox'
     };
   }
 
@@ -180,6 +181,67 @@ class TripStore {
     storage.setItem(this.KEYS.THEME, theme);
     this.notify('theme_updated', theme);
     return theme;
+  }
+
+  // --- CONSUMO REAL & ABASTECIMENTOS DO FOX ---
+  getRefuels() {
+    const raw = storage.getItem(this.KEYS.REFUELS);
+    if (!raw) return [];
+    try {
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  addRefuel(data) {
+    const list = this.getRefuels();
+    const now = new Date();
+    const currentKm = parseFloat(data.currentKm) || 0;
+    const previousKm = parseFloat(data.previousKm) || 0;
+    const distance = Math.max(0, currentKm - previousKm);
+    const liters = parseFloat(data.liters) || 0;
+    const totalCost = parseFloat(data.totalCost) || 0;
+    const pricePerLiter = parseFloat(data.pricePerLiter) || (liters > 0 ? totalCost / liters : 0);
+
+    const record = {
+      id: `refuel_${Date.now()}`,
+      createdAt: now.toISOString(),
+      dateFormatted: now.toLocaleDateString('pt-BR'),
+      timeFormatted: now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+      currentKm,
+      previousKm,
+      distance,
+      liters,
+      totalCost,
+      pricePerLiter,
+      station: (data.station || '').trim(),
+      kmPerLiter: liters > 0 && distance > 0 ? distance / liters : 0,
+      costPerKm: distance > 0 && totalCost > 0 ? totalCost / distance : 0
+    };
+
+    list.unshift(record);
+    storage.setItem(this.KEYS.REFUELS, JSON.stringify(list));
+    this.notify('refuels_updated', list);
+    return record;
+  }
+
+  deleteRefuel(id) {
+    const list = this.getRefuels().filter((item) => item.id !== id);
+    storage.setItem(this.KEYS.REFUELS, JSON.stringify(list));
+    this.notify('refuels_updated', list);
+    return list;
+  }
+
+  clearRefuels() {
+    storage.setItem(this.KEYS.REFUELS, JSON.stringify([]));
+    this.notify('refuels_updated', []);
+  }
+
+  getLastRefuel() {
+    const list = this.getRefuels();
+    return list.length > 0 ? list[0] : null;
   }
 }
 

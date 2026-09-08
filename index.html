@@ -107,6 +107,9 @@
         <a href="#combustivel" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="fuel" class="w-4 h-4"></i> Combustível & Paradas
         </a>
+        <a href="#consumo-real" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+          <i data-lucide="gauge" class="w-4 h-4"></i> Consumo Real (Bordo)
+        </a>
         <a href="#hoteis" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="bed" class="w-4 h-4"></i> Hotéis no Maps
         </a>
@@ -551,6 +554,244 @@
       </div>
     </section>
 
+    <!-- ================= SEÇÃO: CALCULADORA DE CONSUMO REAL (BORDO DO FOX) ================= -->
+    <section id="consumo-real" aria-labelledby="consumoRealTitle" class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-5 sm:p-7 shadow-xl space-y-6">
+      
+      <!-- Cabeçalho -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs uppercase font-black tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+            <i data-lucide="gauge" class="w-4 h-4"></i> Computador de Bordo Fox 1.6
+          </div>
+          <h2 id="consumoRealTitle" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2.5">
+            Calculadora de Consumo Real na Estrada
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+            Registre cada parada no posto para apurar o rendimento real do motor com peso de mudança e ar-condicionado.
+          </p>
+        </div>
+
+        <!-- Dica Rápida de Aferição -->
+        <div class="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-700/50 rounded-2xl p-3.5 text-xs text-blue-900 dark:text-blue-200 flex items-start gap-2.5 max-w-md">
+          <i data-lucide="fuel" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5"></i>
+          <div>
+            <strong class="block font-bold">Dica para 100% de Exatidão:</strong>
+            Para um cálculo 100% exato, abasteça sempre no automático da bomba e complete o tanque.
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Painel de Resumo Acumulado da Viagem (4 Cards) -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
+          <i data-lucide="gauge" class="w-4 h-4 text-emerald-500"></i> Desempenho Geral Acumulado da Rota
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <!-- Média Ponderada da Viagem -->
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Média Geral</span>
+            <div id="realAverageKml" class="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1">-- km/l</div>
+            <span class="text-[10px] text-slate-400 mt-0.5">Ponderada km / L</span>
+          </div>
+
+          <!-- Total Litros Injetados -->
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Litros Totais</span>
+            <div id="realTotalLiters" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">0,0 L</div>
+            <span class="text-[10px] text-slate-400 mt-0.5">Combustível real</span>
+          </div>
+
+          <!-- Total Gasto R$ -->
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Gasto</span>
+            <div id="realTotalSpent" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">R$ 0,00</div>
+            <span class="text-[10px] text-slate-400 mt-0.5">Custo acumulado</span>
+          </div>
+
+          <!-- Distância Registrada nos Trechos -->
+          <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Distância Aferida</span>
+            <div id="realTotalDistance" class="text-xl sm:text-2xl font-black text-blue-600 dark:text-blue-400 mt-1">0 km</div>
+            <span id="realCostPerKmOverall" class="text-[10px] text-slate-400 mt-0.5">R$ 0,00/km</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. Formulário de Registro de Abastecimento -->
+      <div class="bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 sm:p-6 shadow-inner">
+        <div class="flex items-center justify-between gap-3 mb-4">
+          <h3 class="text-sm sm:text-base font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <i data-lucide="plus" class="w-4 h-4 text-emerald-500"></i> Registrar Parada no Posto
+          </h3>
+          <span class="text-xs bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-bold px-2.5 py-1 rounded-lg border border-emerald-500/20">
+            Cálculo Automático
+          </span>
+        </div>
+
+        <form id="refuelForm" class="space-y-4" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            
+            <!-- Odômetro Atual -->
+            <div>
+              <label for="refuelCurrentKm" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Odômetro Atual (KM) *
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="number"
+                  id="refuelCurrentKm"
+                  step="1"
+                  required
+                  placeholder="Ex: 380"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-16 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">km</span>
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">KM total no painel ou Trip parcial</span>
+            </div>
+
+            <!-- Odômetro Anterior -->
+            <div>
+              <label for="refuelPreviousKm" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Odômetro Anterior (KM) *
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="number"
+                  id="refuelPreviousKm"
+                  step="1"
+                  required
+                  value="0"
+                  placeholder="Ex: 0"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-16 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">km</span>
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">Pré-preenchido do último abastecimento</span>
+            </div>
+
+            <!-- Litros Abastecidos -->
+            <div>
+              <label for="refuelLiters" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Litros Abastecidos (L) *
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="number"
+                  id="refuelLiters"
+                  step="0.01"
+                  required
+                  placeholder="Ex: 38.50"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-14 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">L</span>
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">Quantidade exata indicada na bomba</span>
+            </div>
+
+            <!-- Valor Total Pago -->
+            <div>
+              <label for="refuelTotalCost" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Valor Total Pago (R$) *
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="number"
+                  id="refuelTotalCost"
+                  step="0.01"
+                  required
+                  placeholder="Ex: 244.50"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-16 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">R$</span>
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">Total pago no posto</span>
+            </div>
+
+            <!-- Preço por Litro -->
+            <div>
+              <label for="refuelPricePerLiter" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Preço por Litro (R$/L)
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="number"
+                  id="refuelPricePerLiter"
+                  step="0.01"
+                  placeholder="Ex: 6.35"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-20 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+                <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">R$/L</span>
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">Calculado automaticamente ou manual</span>
+            </div>
+
+            <!-- Posto / Cidade -->
+            <div>
+              <label for="refuelStation" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
+                Posto / Cidade (opcional)
+              </label>
+              <div class="relative flex items-center">
+                <input
+                  type="text"
+                  id="refuelStation"
+                  placeholder="Ex: Graal Cravinhos - SP"
+                  class="min-h-[48px] w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-bold text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+              <span class="text-[10px] text-slate-500 mt-1 block">Identificação para consulta no histórico</span>
+            </div>
+
+          </div>
+
+          <!-- Prévia dos Cálculos do Trecho (Live Feedback) -->
+          <div id="refuelPreviewBox" class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs flex flex-wrap items-center justify-between gap-3 text-slate-800 dark:text-slate-200">
+            <div class="flex items-center gap-2 font-bold">
+              <i data-lucide="gauge" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+              <span>Prévia do Trecho:</span>
+              <span id="previewDistance" class="font-black text-emerald-700 dark:text-emerald-300">0 km rodados</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+              <span>Média do Trecho: <strong id="previewKml" class="font-black text-emerald-600 dark:text-emerald-400">-- km/l</strong></span>
+              <span>Custo/km: <strong id="previewCostKm" class="font-black text-slate-900 dark:text-white">R$ 0,00/km</strong></span>
+            </div>
+          </div>
+
+          <!-- Botão de Ação -->
+          <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-2">
+            <button
+              type="submit"
+              id="saveRefuelBtn"
+              class="min-h-[48px] w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm rounded-xl transition shadow-md flex items-center justify-center gap-2 touch-target active:scale-95 cursor-pointer"
+            >
+              <i data-lucide="plus" class="w-4 h-4"></i> Calcular e Salvar Abastecimento
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- 4. Histórico com Persistência no LocalStorage -->
+      <div>
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <h3 class="text-xs font-black uppercase tracking-wider text-slate-600 dark:text-slate-400 flex items-center gap-2">
+            <i data-lucide="history" class="w-4 h-4 text-emerald-500"></i> Histórico de Abastecimentos Gravados
+          </h3>
+          <button
+            type="button"
+            id="clearRefuelsBtn"
+            class="text-xs text-slate-500 hover:text-red-500 dark:text-slate-400 dark:hover:text-red-400 font-bold transition flex items-center gap-1.5 touch-target p-1 cursor-pointer"
+          >
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Limpar Histórico
+          </button>
+        </div>
+
+        <div id="refuelsHistoryContainer" class="space-y-3 text-xs">
+          <!-- Injetado dinamicamente via js/app.js -->
+        </div>
+      </div>
+
+    </section>
+
     <!-- ================= SEÇÃO 5: HOTÉIS NO GOOGLE MAPS ================= -->
     <section id="hoteis" aria-labelledby="hoteisTitle" class="space-y-6">
       <div>
@@ -679,7 +920,7 @@
 
   <!-- ================= MENU FIXO INFERIOR (BOTTOM NAV MOBILE) COM SAFE AREA ================= -->
   <aside aria-label="Navegação rápida veicular" class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-3 py-1.5 no-print safe-bottom">
-    <div class="max-w-md mx-auto flex items-center justify-around text-[10px] font-black">
+    <div class="max-w-lg mx-auto flex items-center justify-around text-[10px] font-black">
       <a href="#checklist" class="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
         <i data-lucide="check-square" class="w-5 h-5"></i>
         <span>Marcos</span>
@@ -698,6 +939,11 @@
       <a href="#combustivel" class="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
         <i data-lucide="fuel" class="w-5 h-5"></i>
         <span>Tanque Fox</span>
+      </a>
+
+      <a href="#consumo-real" class="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center gap-1 text-slate-600 dark:text-slate-400 hover:text-emerald-500 active:text-emerald-500">
+        <i data-lucide="gauge" class="w-5 h-5"></i>
+        <span>Bordo</span>
       </a>
 
       <button data-open-sos class="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center gap-1 text-red-600 dark:text-red-400 font-black">

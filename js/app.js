@@ -31,6 +31,7 @@ class TripApp {
     this.renderPreViagem();
     this.initFuelCalculator();
     this.renderFuelStops();
+    this.initRealFuelTracker();
     this.renderHotels();
     this.renderEmergencyContacts();
     this.bindEvents();
@@ -44,6 +45,9 @@ class TripApp {
         this.renderPreViagem();
       } else if (event === 'theme_updated') {
         this.applyTheme(store.getTheme());
+      } else if (event === 'refuels_updated') {
+        this.renderRealFuelDashboard();
+        this.renderRealFuelHistory();
       }
     });
   }
@@ -440,6 +444,333 @@ class TripApp {
         </span>
       </div>
     `).join('');
+  }
+
+  // -------------------------------------------------------------
+  // CONSUMO REAL DO FOX & REGISTRO DE ABASTECIMENTOS
+  // -------------------------------------------------------------
+  initRealFuelTracker() {
+    const form = document.getElementById('refuelForm');
+    const currentKmInput = document.getElementById('refuelCurrentKm');
+    const previousKmInput = document.getElementById('refuelPreviousKm');
+    const litersInput = document.getElementById('refuelLiters');
+    const totalCostInput = document.getElementById('refuelTotalCost');
+    const pricePerLiterInput = document.getElementById('refuelPricePerLiter');
+    const stationInput = document.getElementById('refuelStation');
+    const clearBtn = document.getElementById('clearRefuelsBtn');
+
+    // Pré-preenchimento automático com o último odômetro
+    this.updatePreviousKmDefault();
+
+    // Sincronização inteligente: Total Pago <-> Preço por Litro
+    let isUserTypingPricePerLiter = false;
+    if (pricePerLiterInput) {
+      pricePerLiterInput.addEventListener('focus', () => { isUserTypingPricePerLiter = true; });
+      pricePerLiterInput.addEventListener('blur', () => { isUserTypingPricePerLiter = false; });
+      pricePerLiterInput.addEventListener('input', () => {
+        const p = parseFloat(pricePerLiterInput.value) || 0;
+        const l = parseFloat(litersInput?.value) || 0;
+        if (p > 0 && l > 0 && totalCostInput) {
+          totalCostInput.value = (p * l).toFixed(2);
+        }
+        this.updateRefuelPreview();
+      });
+    }
+
+    if (totalCostInput) {
+      totalCostInput.addEventListener('input', () => {
+        if (!isUserTypingPricePerLiter && pricePerLiterInput) {
+          const tot = parseFloat(totalCostInput.value) || 0;
+          const l = parseFloat(litersInput?.value) || 0;
+          if (tot > 0 && l > 0) {
+            pricePerLiterInput.value = (tot / l).toFixed(2);
+          }
+        }
+        this.updateRefuelPreview();
+      });
+    }
+
+    if (litersInput) {
+      litersInput.addEventListener('input', () => {
+        const l = parseFloat(litersInput.value) || 0;
+        const p = parseFloat(pricePerLiterInput?.value) || 0;
+        const tot = parseFloat(totalCostInput?.value) || 0;
+        if (p > 0 && totalCostInput && !totalCostInput.value) {
+          totalCostInput.value = (l * p).toFixed(2);
+        } else if (tot > 0 && pricePerLiterInput && l > 0) {
+          pricePerLiterInput.value = (tot / l).toFixed(2);
+        }
+        this.updateRefuelPreview();
+      });
+    }
+
+    [currentKmInput, previousKmInput].forEach((input) => {
+      input?.addEventListener('input', () => this.updateRefuelPreview());
+    });
+
+    // Submissão do formulário
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const currentKm = parseFloat(currentKmInput?.value);
+        const previousKm = parseFloat(previousKmInput?.value) || 0;
+        const liters = parseFloat(litersInput?.value);
+        const totalCost = parseFloat(totalCostInput?.value);
+        const pricePerLiter = parseFloat(pricePerLiterInput?.value);
+        const station = stationInput?.value || '';
+
+        if (isNaN(currentKm) || currentKm <= 0) {
+          alert('Por favor, informe o Odômetro Atual (KM).');
+          currentKmInput?.focus();
+          return;
+        }
+
+        if (currentKm <= previousKm) {
+          alert(`O Odômetro Atual (${currentKm} km) deve ser maior que o Odômetro Anterior (${previousKm} km).`);
+          currentKmInput?.focus();
+          return;
+        }
+
+        if (isNaN(liters) || liters <= 0) {
+          alert('Por favor, informe a quantidade de Litros abastecidos.');
+          litersInput?.focus();
+          return;
+        }
+
+        if (isNaN(totalCost) || totalCost <= 0) {
+          alert('Por favor, informe o Valor Total Pago (R$).');
+          totalCostInput?.focus();
+          return;
+        }
+
+        store.addRefuel({
+          currentKm,
+          previousKm,
+          liters,
+          totalCost,
+          pricePerLiter,
+          station
+        });
+
+        // Limpar campos para a próxima parada
+        if (currentKmInput) currentKmInput.value = '';
+        if (litersInput) litersInput.value = '';
+        if (totalCostInput) totalCostInput.value = '';
+        if (pricePerLiterInput) pricePerLiterInput.value = '';
+        if (stationInput) stationInput.value = '';
+        
+        this.updatePreviousKmDefault();
+        this.updateRefuelPreview();
+      });
+    }
+
+    // Limpar histórico completo
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        const refuels = store.getRefuels();
+        if (refuels.length === 0) return;
+        if (confirm('Deseja realmente apagar todo o histórico de abastecimentos gravados?')) {
+          store.clearRefuels();
+          this.updatePreviousKmDefault();
+          this.updateRefuelPreview();
+        }
+      });
+    }
+
+    this.renderRealFuelDashboard();
+    this.renderRealFuelHistory();
+  }
+
+  updatePreviousKmDefault() {
+    const previousKmInput = document.getElementById('refuelPreviousKm');
+    if (!previousKmInput) return;
+    const last = store.getLastRefuel();
+    if (last && last.currentKm) {
+      previousKmInput.value = last.currentKm;
+    } else {
+      previousKmInput.value = 0;
+    }
+  }
+
+  updateRefuelPreview() {
+    const current = parseFloat(document.getElementById('refuelCurrentKm')?.value) || 0;
+    const previous = parseFloat(document.getElementById('refuelPreviousKm')?.value) || 0;
+    const liters = parseFloat(document.getElementById('refuelLiters')?.value) || 0;
+    const total = parseFloat(document.getElementById('refuelTotalCost')?.value) || 0;
+
+    const distance = Math.max(0, current - previous);
+    const kml = liters > 0 && distance > 0 ? (distance / liters) : 0;
+    const costKm = distance > 0 && total > 0 ? (total / distance) : 0;
+
+    const distEl = document.getElementById('previewDistance');
+    const kmlEl = document.getElementById('previewKml');
+    const costKmEl = document.getElementById('previewCostKm');
+
+    if (distEl) distEl.innerText = `${distance.toLocaleString('pt-BR')} km rodados`;
+    if (kmlEl) {
+      kmlEl.innerText = kml > 0
+        ? `${kml.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} km/l`
+        : '-- km/l';
+    }
+    if (costKmEl) {
+      costKmEl.innerText = costKm > 0
+        ? costKm.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '/km'
+        : 'R$ 0,00/km';
+    }
+  }
+
+  renderRealFuelDashboard() {
+    const refuels = store.getRefuels();
+    let totalKm = 0;
+    let totalLiters = 0;
+    let totalSpent = 0;
+
+    refuels.forEach((r) => {
+      totalKm += r.distance;
+      totalLiters += r.liters;
+      totalSpent += r.totalCost;
+    });
+
+    const averageKml = totalLiters > 0 ? totalKm / totalLiters : 0;
+    const costPerKm = totalKm > 0 ? totalSpent / totalKm : 0;
+
+    const avgEl = document.getElementById('realAverageKml');
+    const litersEl = document.getElementById('realTotalLiters');
+    const spentEl = document.getElementById('realTotalSpent');
+    const distEl = document.getElementById('realTotalDistance');
+    const costKmEl = document.getElementById('realCostPerKmOverall');
+
+    if (avgEl) {
+      avgEl.innerText = averageKml > 0
+        ? `${averageKml.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} km/l`
+        : '-- km/l';
+    }
+    if (litersEl) {
+      litersEl.innerText = `${totalLiters.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} L`;
+    }
+    if (spentEl) {
+      spentEl.innerText = totalSpent.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+    if (distEl) {
+      distEl.innerText = `${totalKm.toLocaleString('pt-BR')} km`;
+    }
+    if (costKmEl) {
+      costKmEl.innerText = costPerKm > 0
+        ? `${costPerKm.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}/km`
+        : 'R$ 0,00/km';
+    }
+  }
+
+  renderRealFuelHistory() {
+    const container = document.getElementById('refuelsHistoryContainer');
+    if (!container) return;
+
+    const refuels = store.getRefuels();
+    if (refuels.length === 0) {
+      container.innerHTML = `
+        <div class="text-center py-8 px-4 bg-slate-50 dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-700 rounded-2xl">
+          <div class="inline-flex items-center justify-center p-3 rounded-full bg-slate-200/60 dark:bg-slate-800 text-slate-400 mb-2">
+            ${getSvgIcon('gauge', 'w-6 h-6')}
+          </div>
+          <p class="font-bold text-slate-700 dark:text-slate-300 text-sm">Nenhum abastecimento registrado ainda</p>
+          <p class="text-slate-500 dark:text-slate-400 text-xs mt-1 max-w-sm mx-auto">
+            Ao parar no primeiro posto (ex: Ribeirão Preto ou Uberaba), preencha o odômetro e os litros para conferir a autonomia real do Fox.
+          </p>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = refuels.map((r, index) => {
+      // Badge de eficiência
+      let badgeColor = 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30';
+      let efficiencyText = 'Excelente';
+      if (r.kmPerLiter < 11.0) {
+        badgeColor = 'bg-red-500/15 text-red-700 dark:text-red-300 border-red-500/30';
+        efficiencyText = 'Pesado / Baixo';
+      } else if (r.kmPerLiter < 13.0) {
+        badgeColor = 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-500/30';
+        efficiencyText = 'Moderado (Carga + Ar)';
+      }
+
+      const formattedKml = r.kmPerLiter > 0
+        ? r.kmPerLiter.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })
+        : '--';
+
+      const formattedCost = r.totalCost.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      const formattedPricePerLiter = r.pricePerLiter > 0
+        ? r.pricePerLiter.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        : '--';
+      const formattedCostPerKm = r.costPerKm > 0
+        ? r.costPerKm.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+        : '--';
+
+      return `
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 shadow-sm transition hover:border-slate-400 dark:hover:border-slate-600">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100 dark:border-slate-800">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="px-2.5 py-0.5 rounded-md text-[11px] font-black bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                #${refuels.length - index}
+              </span>
+              <span class="font-black text-slate-900 dark:text-white text-sm">
+                ${r.station ? r.station : 'Abastecimento na Estrada'}
+              </span>
+              <span class="text-[11px] text-slate-500 dark:text-slate-400">
+                • ${r.dateFormatted} às ${r.timeFormatted}
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 self-end sm:self-auto">
+              <span class="text-xs font-black px-3 py-1 rounded-xl border ${badgeColor}">
+                ${formattedKml} km/l <span class="hidden sm:inline font-normal text-[10px]">(${efficiencyText})</span>
+              </span>
+              <button
+                type="button"
+                data-delete-refuel="${r.id}"
+                class="p-2 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 transition cursor-pointer touch-target flex items-center justify-center"
+                aria-label="Excluir este abastecimento"
+                title="Excluir registro"
+              >
+                ${getSvgIcon('trash-2', 'w-4 h-4')}
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 text-xs">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Trecho Rodado</span>
+              <strong class="text-slate-800 dark:text-slate-200 font-black text-sm">${r.distance.toLocaleString('pt-BR')} km</strong>
+              <span class="text-[10px] text-slate-500 block">(${r.previousKm} ➔ ${r.currentKm} km)</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Combustível</span>
+              <strong class="text-slate-800 dark:text-slate-200 font-black text-sm">${r.liters.toLocaleString('pt-BR')} L</strong>
+              <span class="text-[10px] text-slate-500 block">${formattedPricePerLiter}/L</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Valor Pago</span>
+              <strong class="text-slate-900 dark:text-white font-black text-sm">${formattedCost}</strong>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-400 block">Custo por KM</span>
+              <strong class="text-emerald-700 dark:text-emerald-400 font-black text-sm">${formattedCostPerKm}/km</strong>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Listener de exclusão individual
+    container.querySelectorAll('[data-delete-refuel]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        const id = e.currentTarget.dataset.deleteRefuel;
+        if (confirm('Deseja excluir este registro de abastecimento?')) {
+          store.deleteRefuel(id);
+          this.updatePreviousKmDefault();
+          this.updateRefuelPreview();
+        }
+      });
+    });
   }
 
   // -------------------------------------------------------------
