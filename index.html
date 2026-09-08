@@ -93,24 +93,24 @@
     </div>
 
     <!-- Navegação Superior por Abas (Desktop & Tablet) -->
-    <nav aria-label="Navegação de seções" class="border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/70 backdrop-blur px-4 no-print overflow-x-auto custom-scrollbar">
+    <nav aria-label="Navegação de seções" class="hidden md:block border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-950/70 backdrop-blur px-4 no-print overflow-x-auto custom-scrollbar">
       <div class="max-w-5xl mx-auto flex gap-2 py-2 text-xs font-bold text-slate-600 dark:text-slate-400 whitespace-nowrap">
-        <a href="#checklist" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#checklist" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="check-square" class="w-4 h-4"></i> Marcos da Viagem
         </a>
-        <a href="#previagem" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#previagem" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="clipboard-check" class="w-4 h-4"></i> Pré-Viagem (Fox)
         </a>
-        <a href="#roteiro" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#roteiro" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="calendar" class="w-4 h-4"></i> Roteiro & GPS
         </a>
-        <a href="#combustivel" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#combustivel" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="fuel" class="w-4 h-4"></i> Combustível & Paradas
         </a>
-        <a href="#hoteis" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#hoteis" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="bed" class="w-4 h-4"></i> Hotéis no Maps
         </a>
-        <a href="#seguranca" class="flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
+        <a href="#seguranca" class="shrink-0 flex items-center gap-2 py-2 px-3.5 rounded-xl hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 transition touch-target">
           <i data-lucide="shield-alert" class="w-4 h-4"></i> Segurança na Estrada
         </a>
       </div>
@@ -481,9 +481,9 @@
           <label for="distanceInput" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
             Distância Total (km)
           </label>
-          <div class="relative">
-            <input type="number" id="distanceInput" value="3080" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
-            <span class="absolute right-3.5 top-3.5 text-xs text-slate-400 font-bold">km</span>
+          <div class="relative flex items-center">
+            <input type="number" id="distanceInput" value="3080" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-16 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">km</span>
           </div>
         </div>
 
@@ -491,9 +491,9 @@
           <label for="consumptionInput" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
             Média de Consumo (km/l)
           </label>
-          <div class="relative">
-            <input type="number" step="0.5" id="consumptionInput" value="13.5" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
-            <span class="absolute right-3.5 top-3.5 text-xs text-slate-400 font-bold">km/l</span>
+          <div class="relative flex items-center">
+            <input type="number" step="0.5" id="consumptionInput" value="13.5" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-20 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">km/l</span>
           </div>
           <span class="text-[11px] text-amber-600 dark:text-amber-400 font-bold mt-1.5 block">💡 Recomendado 13,5 km/l (Fox com carga + ar)</span>
         </div>
@@ -502,9 +502,9 @@
           <label for="fuelPriceInput" class="block text-xs font-black text-slate-700 dark:text-slate-300 uppercase mb-1.5">
             Preço Médio da Gasolina (R$)
           </label>
-          <div class="relative">
-            <input type="number" step="0.05" id="fuelPriceInput" value="6.35" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
-            <span class="absolute right-3.5 top-3.5 text-xs text-slate-400 font-bold">R$/L</span>
+          <div class="relative flex items-center">
+            <input type="number" step="0.05" id="fuelPriceInput" value="6.35" class="min-h-[48px] w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-4 pr-20 py-2.5 text-slate-900 dark:text-white font-black focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+            <span class="input-suffix text-slate-400 font-bold text-xs sm:text-sm">R$/L</span>
           </div>
           <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1.5 block">Média interestadual SP/MG/GO/BA/PI/CE</span>
         </div>
@@ -586,12 +586,12 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Fox e Distribuição de Peso -->
-        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col h-full">
           <h3 class="font-black text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
             <i data-lucide="weight" class="w-5 h-5 text-emerald-500"></i>
             Distribuição de Peso no Fox
           </h3>
-          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex-1">
             <li class="flex items-start gap-2.5">
               <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
               <span><strong>Peso no Assoalho:</strong> Caixas pesadas no fundo do porta-malas ou atrás dos bancos dianteiros, baixando o centro de gravidade do Fox.</span>
@@ -608,12 +608,12 @@
         </div>
 
         <!-- Alertas de Rodovia -->
-        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col h-full">
           <h3 class="font-black text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
             <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-500"></i>
             Perigos na Estrada (BR-135 e Sertão)
           </h3>
-          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex-1">
             <li class="flex items-start gap-2.5">
               <i data-lucide="alert-circle" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
               <span><strong>Atenção Máxima na BR-135:</strong> Tráfego intenso de bitrens graneleiros. Respeite desníveis de acostamento e nunca ultrapasse sem visibilidade total.</span>
@@ -630,12 +630,12 @@
         </div>
 
         <!-- Conectividade e Pedágios -->
-        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col h-full">
           <h3 class="font-black text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
             <i data-lucide="wifi-off" class="w-5 h-5 text-blue-500"></i>
             Mapas Offline & Conectividade
           </h3>
-          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex-1">
             <li class="flex items-start gap-2.5">
               <i data-lucide="download" class="w-4 h-4 text-blue-500 shrink-0 mt-0.5"></i>
               <span><strong>Baixe Áreas Offline no Google Maps:</strong> Faça download no Wi-Fi das áreas de Goiás, oeste baiano e sul do Piauí. Há extensos "buracos de sinal" de operadora.</span>
@@ -648,12 +648,12 @@
         </div>
 
         <!-- Kit de Emergência a Bordo -->
-        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col h-full">
           <h3 class="font-black text-slate-900 dark:text-white text-base flex items-center gap-2 mb-3">
             <i data-lucide="first-aid" class="w-5 h-5 text-red-500"></i>
             Kit de Emergência a Bordo
           </h3>
-          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300 flex-1">
             <li class="flex items-start gap-2.5">
               <i data-lucide="check" class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5"></i>
               <span><strong>Água e Lanche Fácil:</strong> Leve pelo menos 5L de água potável no carro e petiscos práticos para não depender de paradas quando o tempo apertar.</span>
@@ -670,7 +670,7 @@
   </main>
 
   <!-- ================= RODAPÉ ================= -->
-  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 py-8 text-center text-xs text-slate-500 dark:text-slate-400">
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 pt-8 pb-12 mb-20 sm:mb-16 text-center text-xs text-slate-500 dark:text-slate-400">
     <div class="max-w-5xl mx-auto px-4">
       <p class="font-bold text-slate-800 dark:text-slate-300">Boa viagem e excelente recomeço para vocês em Jaguaribe - CE! 🚗✨</p>
       <p class="mt-1">Roteiro planejado para o Volkswagen Fox 1.6 • Funcionamento 100% offline para uso no suporte veicular.</p>
@@ -708,7 +708,7 @@
   </aside>
 
   <!-- ================= MODAL CENTRAL DE EMERGÊNCIA (SOS) ================= -->
-  <div id="sosModal" role="dialog" aria-modal="true" aria-labelledby="sosModalTitle" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+  <div id="sosModal" role="dialog" aria-modal="true" aria-labelledby="sosModalTitle" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-3xl max-w-lg w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
         <div class="flex items-center gap-3 text-red-600 dark:text-red-400">

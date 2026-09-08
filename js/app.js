@@ -240,15 +240,15 @@ class TripApp {
         : '';
 
       card.innerHTML = `
-        <div class="pt-0.5 min-w-[32px] flex items-center justify-center">
+        <div class="shrink-0 pt-0.5 flex items-center justify-center">
           <input
             type="checkbox"
             id="${item.id}"
-            class="w-6 h-6 rounded-lg border-2 border-slate-400 dark:border-slate-600 text-emerald-600 focus:ring-emerald-500 focus:ring-offset-0 cursor-pointer shrink-0 transition"
+            class="checkpoint-checkbox w-5 h-5 min-w-[20px] min-h-[20px] max-w-[20px] max-h-[20px] rounded shrink-0 accent-emerald-600 cursor-pointer"
             ${isChecked ? 'checked' : ''}
           />
         </div>
-        <div class="flex-1">
+        <div class="flex-1 min-w-0">
           <div class="flex items-center justify-between gap-2">
             <span class="text-[11px] font-black ${isChecked ? 'text-emerald-700 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'} uppercase tracking-wide">
               ${item.day} • Previsto: ${item.time} (~${item.km} km)
@@ -323,7 +323,7 @@ class TripApp {
 
     PRE_VIAGEM_DATA.forEach((cat) => {
       const card = document.createElement('div');
-      card.className = 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between shadow-sm';
+      card.className = 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between shadow-sm h-full';
 
       let itemsHtml = '';
       cat.items.forEach((item) => {
@@ -333,14 +333,16 @@ class TripApp {
 
         itemsHtml += `
           <label class="flex items-start gap-3 text-xs text-slate-800 dark:text-slate-200 cursor-pointer select-none py-1.5 min-h-[44px] active:opacity-80">
-            <input
-              type="checkbox"
-              id="${item.id}"
-              class="w-5 h-5 mt-0.5 rounded border-2 border-slate-400 dark:border-slate-600 text-blue-600 focus:ring-blue-500 cursor-pointer shrink-0"
-              ${isChecked ? 'checked' : ''}
-              data-previagem="${item.id}"
-            />
-            <span class="${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'font-medium'} leading-snug">
+            <div class="shrink-0 pt-0.5 flex items-center justify-center">
+              <input
+                type="checkbox"
+                id="${item.id}"
+                class="previagem-checkbox w-5 h-5 min-w-[18px] min-h-[18px] max-w-[18px] max-h-[18px] rounded shrink-0 accent-blue-600 cursor-pointer"
+                ${isChecked ? 'checked' : ''}
+                data-previagem="${item.id}"
+              />
+            </div>
+            <span class="flex-1 min-w-0 ${isChecked ? 'line-through text-slate-400 dark:text-slate-500' : 'font-medium'} leading-snug">
               ${item.text}
             </span>
           </label>
@@ -461,7 +463,7 @@ class TripApp {
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           ${section.hotels.map((h) => `
-            <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition">
+            <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition h-full">
               <div>
                 <div class="flex justify-between items-start">
                   <h4 class="font-bold text-slate-900 dark:text-white text-base">${h.name}</h4>
@@ -598,8 +600,14 @@ class TripApp {
 
     // Modal SOS
     const sosModal = document.getElementById('sosModal');
-    const openSos = () => sosModal?.classList.remove('hidden');
-    const closeSos = () => sosModal?.classList.add('hidden');
+    const openSos = () => {
+      sosModal?.classList.remove('hidden');
+      sosModal?.classList.add('flex');
+    };
+    const closeSos = () => {
+      sosModal?.classList.add('hidden');
+      sosModal?.classList.remove('flex');
+    };
 
     document.querySelectorAll('[data-open-sos]').forEach((btn) => {
       btn.addEventListener('click', openSos);
